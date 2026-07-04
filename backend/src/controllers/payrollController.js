@@ -11,7 +11,7 @@ export const generatePayroll = async (req, res) => {
   try {
     const parsed = generatePayrollSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid payroll data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid payroll data', parsed.error.issues);
     }
 
     const { employee, month, year, basicSalary, allowances = 0, bonus = 0, deductions = 0, tax = 0, remarks } = parsed.data;
@@ -169,7 +169,7 @@ export const updatePayroll = async (req, res) => {
 
     const parsed = updatePayrollSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid payroll data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid payroll data', parsed.error.issues);
     }
 
     const { id } = req.params;

@@ -20,7 +20,7 @@ export const createEmployee = async (req, res) => {
   try {
     const parsed = createEmployeeSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid employee data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid employee data', parsed.error.issues);
     }
 
     const existingEmployee = await Employee.findOne({ employeeId: parsed.data.employeeId });
@@ -97,7 +97,7 @@ export const updateEmployee = async (req, res) => {
   try {
     const parsed = updateEmployeeSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid employee data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid employee data', parsed.error.issues);
     }
 
     const { id } = req.params;

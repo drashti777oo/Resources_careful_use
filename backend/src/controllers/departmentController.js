@@ -6,7 +6,7 @@ export const createDepartment = async (req, res) => {
   try {
     const parsed = createDepartmentSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid department data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid department data', parsed.error.issues);
     }
 
     const existing = await Department.findOne({ name: parsed.data.name });
@@ -80,7 +80,7 @@ export const updateDepartment = async (req, res) => {
   try {
     const parsed = updateDepartmentSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid department data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid department data', parsed.error.issues);
     }
 
     const { id } = req.params;

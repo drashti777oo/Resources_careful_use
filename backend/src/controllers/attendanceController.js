@@ -19,7 +19,7 @@ export const checkIn = async (req, res) => {
   try {
     const parsed = checkInSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid check-in data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid check-in data', parsed.error.issues);
     }
 
     const { employee, remarks } = parsed.data;
@@ -59,7 +59,7 @@ export const checkOut = async (req, res) => {
   try {
     const parsed = checkOutSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid check-out data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid check-out data', parsed.error.issues);
     }
 
     const { employee, remarks } = parsed.data;
@@ -99,7 +99,7 @@ export const markAttendance = async (req, res) => {
 
     const parsed = attendanceUpdateSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid attendance data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid attendance data', parsed.error.issues);
     }
 
     const { employee, date } = parsed.data;
@@ -257,7 +257,7 @@ export const updateAttendance = async (req, res) => {
 
     const parsed = attendanceUpdateSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid attendance data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid attendance data', parsed.error.issues);
     }
 
     const { id } = req.params;

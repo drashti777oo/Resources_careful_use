@@ -14,7 +14,7 @@ export const applyLeave = async (req, res) => {
   try {
     const parsed = applyLeaveSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid leave application data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid leave application data', parsed.error.issues);
     }
 
     const { employee, leaveType, startDate, endDate, reason } = parsed.data;

@@ -7,7 +7,7 @@ export const registerUser = async (req, res) => {
   try {
     const parsed = registerSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid registration data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid registration data', parsed.error.issues);
     }
 
     const { name, email, password, role } = parsed.data;
@@ -35,7 +35,7 @@ export const loginUser = async (req, res) => {
   try {
     const parsed = loginSchema.safeParse(req.body);
     if (!parsed.success) {
-      return errorResponse(res, 400, 'Invalid login data', parsed.error.errors);
+      return errorResponse(res, 400, 'Invalid login data', parsed.error.issues);
     }
 
     const { email, password } = parsed.data;

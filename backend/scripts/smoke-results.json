@@ -1,0 +1,5529 @@
+{
+  "summary": {
+    "runId": "smoke-1783154864601",
+    "baseUrl": "http://localhost:5000",
+    "total": 99,
+    "passed": 99,
+    "failed": 0,
+    "failedChecks": []
+  },
+  "results": [
+    {
+      "module": "AUTH",
+      "name": "register validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid registration data",
+          "errors": [
+            {
+              "origin": "string",
+              "code": "too_small",
+              "minimum": 2,
+              "inclusive": true,
+              "path": [
+                "name"
+              ],
+              "message": "Name must be at least 2 characters"
+            },
+            {
+              "origin": "string",
+              "code": "invalid_format",
+              "format": "email",
+              "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+              "path": [
+                "email"
+              ],
+              "message": "Invalid email address"
+            },
+            {
+              "origin": "string",
+              "code": "too_small",
+              "minimum": 6,
+              "inclusive": true,
+              "path": [
+                "password"
+              ],
+              "message": "Password must be at least 6 characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "register admin",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "User registered successfully",
+          "data": {
+            "id": "6a48c8b11d2ce3991c1bfedc",
+            "name": "Admin Admin",
+            "email": "smoke-1783154864601-admin-admin@example.com",
+            "role": "Admin"
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "register hr",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "User registered successfully",
+          "data": {
+            "id": "6a48c8b31d2ce3991c1bfedf",
+            "name": "HR HR",
+            "email": "smoke-1783154864601-hr-hr@example.com",
+            "role": "HR"
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "register manager",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "User registered successfully",
+          "data": {
+            "id": "6a48c8b41d2ce3991c1bfee2",
+            "name": "Manager Manager",
+            "email": "smoke-1783154864601-manager-manager@example.com",
+            "role": "Manager"
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "register employee",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "User registered successfully",
+          "data": {
+            "id": "6a48c8b51d2ce3991c1bfee5",
+            "name": "Employee Employee",
+            "email": "smoke-1783154864601-employee-employee@example.com",
+            "role": "Employee"
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "register temp",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "User registered successfully",
+          "data": {
+            "id": "6a48c8b51d2ce3991c1bfee8",
+            "name": "Temp Employee",
+            "email": "smoke-1783154864601-temp-employee@example.com",
+            "role": "Employee"
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "register duplicate email",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "User already exists",
+          "errors": null
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "login validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid login data",
+          "errors": [
+            {
+              "origin": "string",
+              "code": "invalid_format",
+              "format": "email",
+              "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+              "path": [
+                "email"
+              ],
+              "message": "Invalid email address"
+            },
+            {
+              "origin": "string",
+              "code": "too_small",
+              "minimum": 6,
+              "inclusive": true,
+              "path": [
+                "password"
+              ],
+              "message": "Password must be at least 6 characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "login admin",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Login successful",
+          "data": {
+            "token": "[redacted]",
+            "user": {
+              "id": "6a48c8b11d2ce3991c1bfedc",
+              "name": "Admin Admin",
+              "email": "smoke-1783154864601-admin-admin@example.com",
+              "role": "Admin"
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "login hr",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Login successful",
+          "data": {
+            "token": "[redacted]",
+            "user": {
+              "id": "6a48c8b31d2ce3991c1bfedf",
+              "name": "HR HR",
+              "email": "smoke-1783154864601-hr-hr@example.com",
+              "role": "HR"
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "login manager",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Login successful",
+          "data": {
+            "token": "[redacted]",
+            "user": {
+              "id": "6a48c8b41d2ce3991c1bfee2",
+              "name": "Manager Manager",
+              "email": "smoke-1783154864601-manager-manager@example.com",
+              "role": "Manager"
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "login employee",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Login successful",
+          "data": {
+            "token": "[redacted]",
+            "user": {
+              "id": "6a48c8b51d2ce3991c1bfee5",
+              "name": "Employee Employee",
+              "email": "smoke-1783154864601-employee-employee@example.com",
+              "role": "Employee"
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "login temp",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Login successful",
+          "data": {
+            "token": "[redacted]",
+            "user": {
+              "id": "6a48c8b51d2ce3991c1bfee8",
+              "name": "Temp Employee",
+              "email": "smoke-1783154864601-temp-employee@example.com",
+              "role": "Employee"
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "me requires jwt",
+      "ok": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "note": "",
+      "response": {
+        "status": 401,
+        "body": {
+          "success": false,
+          "message": "Access denied. No token provided.",
+          "errors": null
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "me rejects invalid jwt",
+      "ok": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "note": "",
+      "response": {
+        "status": 401,
+        "body": {
+          "success": false,
+          "message": "Access denied. Invalid token.",
+          "errors": null
+        }
+      }
+    },
+    {
+      "module": "AUTH",
+      "name": "me returns current user",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "User fetched successfully",
+          "data": {
+            "id": "6a48c8b11d2ce3991c1bfedc",
+            "name": "Admin Admin",
+            "email": "smoke-1783154864601-admin-admin@example.com",
+            "role": "Admin",
+            "profilePicture": "",
+            "isVerified": false
+          }
+        }
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "baseline stats (admin)",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Dashboard stats fetched successfully",
+          "data": {
+            "totalEmployees": 36,
+            "totalDepartments": 2,
+            "activeEmployees": 36,
+            "inactiveEmployees": 0,
+            "attendance": {
+              "presentToday": 7,
+              "absentToday": 0,
+              "lateToday": 0,
+              "leaveToday": 0
+            },
+            "leaves": {
+              "pending": 3,
+              "approved": 1,
+              "rejected": 1
+            },
+            "payroll": {
+              "paid": 1,
+              "pending": 4
+            },
+            "recentEmployees": [
+              {
+                "_id": "6a48c793e63069786d937e5b",
+                "employeeId": "smoke-1783154567402-EMP-EMPLOYEE",
+                "firstName": "Eli",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:59.234Z"
+              },
+              {
+                "_id": "6a48c793e63069786d937e57",
+                "employeeId": "smoke-1783154567402-EMP-MANAGER",
+                "firstName": "Mason",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:59.082Z"
+              },
+              {
+                "_id": "6a48c792e63069786d937e53",
+                "employeeId": "smoke-1783154567402-EMP-HR",
+                "firstName": "Harper",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Finance",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:58.843Z"
+              },
+              {
+                "_id": "6a48c792e63069786d937e4f",
+                "employeeId": "smoke-1783154567402-EMP-ADMIN",
+                "firstName": "Ava",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:58.602Z"
+              },
+              {
+                "_id": "6a48bc10780c65bf595d1874",
+                "employeeId": "DASH-1783151632324-Employee",
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:52.521Z"
+              }
+            ],
+            "monthlyAttendance": [
+              {
+                "month": "Feb",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Mar",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Apr",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "May",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Jun",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Jul",
+                "year": 2026,
+                "present": 7,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              }
+            ],
+            "departmentDistribution": [
+              {
+                "count": 16,
+                "department": "Finance"
+              },
+              {
+                "count": 12,
+                "department": "HR"
+              },
+              {
+                "count": 4,
+                "department": "IT"
+              },
+              {
+                "count": 3,
+                "department": "smoke-1783154567402-Operations-Updated"
+              },
+              {
+                "count": 1,
+                "department": "smoke-1783154567402-Finance"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "employee forbidden from stats",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "manager allowed for stats",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Dashboard stats fetched successfully",
+          "data": {
+            "totalEmployees": 36,
+            "totalDepartments": 2,
+            "activeEmployees": 36,
+            "inactiveEmployees": 0,
+            "attendance": {
+              "presentToday": 7,
+              "absentToday": 0,
+              "lateToday": 0,
+              "leaveToday": 0
+            },
+            "leaves": {
+              "pending": 3,
+              "approved": 1,
+              "rejected": 1
+            },
+            "payroll": {
+              "paid": 1,
+              "pending": 4
+            },
+            "recentEmployees": [
+              {
+                "_id": "6a48c793e63069786d937e5b",
+                "employeeId": "smoke-1783154567402-EMP-EMPLOYEE",
+                "firstName": "Eli",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:59.234Z"
+              },
+              {
+                "_id": "6a48c793e63069786d937e57",
+                "employeeId": "smoke-1783154567402-EMP-MANAGER",
+                "firstName": "Mason",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:59.082Z"
+              },
+              {
+                "_id": "6a48c792e63069786d937e53",
+                "employeeId": "smoke-1783154567402-EMP-HR",
+                "firstName": "Harper",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Finance",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:58.843Z"
+              },
+              {
+                "_id": "6a48c792e63069786d937e4f",
+                "employeeId": "smoke-1783154567402-EMP-ADMIN",
+                "firstName": "Ava",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:58.602Z"
+              },
+              {
+                "_id": "6a48bc10780c65bf595d1874",
+                "employeeId": "DASH-1783151632324-Employee",
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:52.521Z"
+              }
+            ],
+            "monthlyAttendance": [
+              {
+                "month": "Feb",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Mar",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Apr",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "May",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Jun",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Jul",
+                "year": 2026,
+                "present": 7,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              }
+            ],
+            "departmentDistribution": [
+              {
+                "count": 16,
+                "department": "Finance"
+              },
+              {
+                "count": 12,
+                "department": "HR"
+              },
+              {
+                "count": 4,
+                "department": "IT"
+              },
+              {
+                "count": 3,
+                "department": "smoke-1783154567402-Operations-Updated"
+              },
+              {
+                "count": 1,
+                "department": "smoke-1783154567402-Finance"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "create validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid department data",
+          "errors": [
+            {
+              "origin": "string",
+              "code": "too_small",
+              "minimum": 2,
+              "inclusive": true,
+              "path": [
+                "name"
+              ],
+              "message": "Department name must be at least 2 characters"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "employee forbidden to create",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "create active",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Department created successfully",
+          "data": {
+            "name": "smoke-1783154864601-Operations",
+            "description": "smoke-1783154864601-Operations department",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "status": "Active",
+            "_id": "6a48c8c01d2ce3991c1bff12",
+            "createdAt": "2026-07-04T08:48:00.725Z",
+            "updatedAt": "2026-07-04T08:48:00.725Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "create inactive",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Department created successfully",
+          "data": {
+            "name": "smoke-1783154864601-Finance",
+            "description": "smoke-1783154864601-Finance department",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "status": "Inactive",
+            "_id": "6a48c8c11d2ce3991c1bff16",
+            "createdAt": "2026-07-04T08:48:01.218Z",
+            "updatedAt": "2026-07-04T08:48:01.218Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "create delete",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Department created successfully",
+          "data": {
+            "name": "smoke-1783154864601-Archive",
+            "description": "smoke-1783154864601-Archive department",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "status": "Active",
+            "_id": "6a48c8c11d2ce3991c1bff1a",
+            "createdAt": "2026-07-04T08:48:01.816Z",
+            "updatedAt": "2026-07-04T08:48:01.816Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "list",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Departments fetched successfully",
+          "data": {
+            "departments": [
+              {
+                "_id": "6a48c8c11d2ce3991c1bff1a",
+                "name": "smoke-1783154864601-Archive",
+                "description": "smoke-1783154864601-Archive department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Active",
+                "createdAt": "2026-07-04T08:48:01.816Z",
+                "updatedAt": "2026-07-04T08:48:01.816Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c11d2ce3991c1bff16",
+                "name": "smoke-1783154864601-Finance",
+                "description": "smoke-1783154864601-Finance department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Inactive",
+                "createdAt": "2026-07-04T08:48:01.218Z",
+                "updatedAt": "2026-07-04T08:48:01.218Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c01d2ce3991c1bff12",
+                "name": "smoke-1783154864601-Operations",
+                "description": "smoke-1783154864601-Operations department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Active",
+                "createdAt": "2026-07-04T08:48:00.725Z",
+                "updatedAt": "2026-07-04T08:48:00.725Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c78fe63069786d937e2d",
+                "name": "smoke-1783154567402-Finance",
+                "description": "smoke-1783154567402-Finance department",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154567402-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Inactive",
+                "createdAt": "2026-07-04T08:42:55.326Z",
+                "updatedAt": "2026-07-04T08:42:55.326Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c78fe63069786d937e29",
+                "name": "smoke-1783154567402-Operations-Updated",
+                "description": "Updated department name",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154567402-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Active",
+                "createdAt": "2026-07-04T08:42:55.032Z",
+                "updatedAt": "2026-07-04T08:42:57.361Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 5,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "pagination",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Departments fetched successfully",
+          "data": {
+            "departments": [
+              {
+                "_id": "6a48c8c11d2ce3991c1bff1a",
+                "name": "smoke-1783154864601-Archive",
+                "description": "smoke-1783154864601-Archive department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Active",
+                "createdAt": "2026-07-04T08:48:01.816Z",
+                "updatedAt": "2026-07-04T08:48:01.816Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 5,
+              "page": 1,
+              "limit": 1,
+              "pages": 5
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "search",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Departments fetched successfully",
+          "data": {
+            "departments": [
+              {
+                "_id": "6a48c8c11d2ce3991c1bff1a",
+                "name": "smoke-1783154864601-Archive",
+                "description": "smoke-1783154864601-Archive department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Active",
+                "createdAt": "2026-07-04T08:48:01.816Z",
+                "updatedAt": "2026-07-04T08:48:01.816Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c11d2ce3991c1bff16",
+                "name": "smoke-1783154864601-Finance",
+                "description": "smoke-1783154864601-Finance department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Inactive",
+                "createdAt": "2026-07-04T08:48:01.218Z",
+                "updatedAt": "2026-07-04T08:48:01.218Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c01d2ce3991c1bff12",
+                "name": "smoke-1783154864601-Operations",
+                "description": "smoke-1783154864601-Operations department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Active",
+                "createdAt": "2026-07-04T08:48:00.725Z",
+                "updatedAt": "2026-07-04T08:48:00.725Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 3,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "status filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Departments fetched successfully",
+          "data": {
+            "departments": [
+              {
+                "_id": "6a48c8c11d2ce3991c1bff16",
+                "name": "smoke-1783154864601-Finance",
+                "description": "smoke-1783154864601-Finance department",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154864601-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Inactive",
+                "createdAt": "2026-07-04T08:48:01.218Z",
+                "updatedAt": "2026-07-04T08:48:01.218Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c78fe63069786d937e2d",
+                "name": "smoke-1783154567402-Finance",
+                "description": "smoke-1783154567402-Finance department",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "name": "Manager Manager",
+                  "email": "smoke-1783154567402-manager-manager@example.com",
+                  "role": "Manager"
+                },
+                "status": "Inactive",
+                "createdAt": "2026-07-04T08:42:55.326Z",
+                "updatedAt": "2026-07-04T08:42:55.326Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 2,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "get by id",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Department fetched successfully",
+          "data": {
+            "_id": "6a48c8c01d2ce3991c1bff12",
+            "name": "smoke-1783154864601-Operations",
+            "description": "smoke-1783154864601-Operations department",
+            "manager": {
+              "_id": "6a48c8b41d2ce3991c1bfee2",
+              "name": "Manager Manager",
+              "email": "smoke-1783154864601-manager-manager@example.com",
+              "role": "Manager"
+            },
+            "status": "Active",
+            "createdAt": "2026-07-04T08:48:00.725Z",
+            "updatedAt": "2026-07-04T08:48:00.725Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "update",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Department updated successfully",
+          "data": {
+            "_id": "6a48c8c01d2ce3991c1bff12",
+            "name": "smoke-1783154864601-Operations-Updated",
+            "description": "Updated department name",
+            "manager": {
+              "_id": "6a48c8b41d2ce3991c1bfee2",
+              "name": "Manager Manager",
+              "email": "smoke-1783154864601-manager-manager@example.com",
+              "role": "Manager"
+            },
+            "status": "Active",
+            "createdAt": "2026-07-04T08:48:00.725Z",
+            "updatedAt": "2026-07-04T08:48:04.040Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "mongo persistence after update",
+      "ok": true,
+      "id": "6a48c8c01d2ce3991c1bff12",
+      "document": {
+        "_id": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 192,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 18
+          }
+        },
+        "name": "smoke-1783154864601-Operations-Updated",
+        "description": "Updated department name",
+        "manager": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 180,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 226
+          }
+        },
+        "status": "Active",
+        "createdAt": {},
+        "updatedAt": {},
+        "__v": 0
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "delete",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Department deleted successfully",
+          "data": null
+        }
+      }
+    },
+    {
+      "module": "DEPARTMENT",
+      "name": "mongo persistence after delete",
+      "ok": true,
+      "id": "6a48c8c11d2ce3991c1bff1a",
+      "document": null
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "create validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid employee data",
+          "errors": [
+            {
+              "expected": "string",
+              "code": "invalid_type",
+              "path": [
+                "employeeId"
+              ],
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "expected": "string",
+              "code": "invalid_type",
+              "path": [
+                "user"
+              ],
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "employee forbidden to create",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "create admin",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Employee created successfully",
+          "data": {
+            "employeeId": "smoke-1783154864601-EMP-ADMIN",
+            "user": "6a48c8b11d2ce3991c1bfedc",
+            "firstName": "Ava",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Operations-Updated",
+            "designation": "Administrator",
+            "salary": 95000,
+            "profilePicture": "",
+            "status": "Active",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "_id": "6a48c8c51d2ce3991c1bff38",
+            "joiningDate": "2026-07-04T08:48:05.521Z",
+            "createdAt": "2026-07-04T08:48:05.522Z",
+            "updatedAt": "2026-07-04T08:48:05.522Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "create hr",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Employee created successfully",
+          "data": {
+            "employeeId": "smoke-1783154864601-EMP-HR",
+            "user": "6a48c8b31d2ce3991c1bfedf",
+            "firstName": "Harper",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Finance",
+            "designation": "HR Lead",
+            "salary": 85000,
+            "profilePicture": "",
+            "status": "Active",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "_id": "6a48c8c51d2ce3991c1bff3c",
+            "joiningDate": "2026-07-04T08:48:05.838Z",
+            "createdAt": "2026-07-04T08:48:05.839Z",
+            "updatedAt": "2026-07-04T08:48:05.839Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "create manager",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Employee created successfully",
+          "data": {
+            "employeeId": "smoke-1783154864601-EMP-MANAGER",
+            "user": "6a48c8b41d2ce3991c1bfee2",
+            "firstName": "Mason",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Operations-Updated",
+            "designation": "Operations Manager",
+            "salary": 90000,
+            "profilePicture": "",
+            "status": "Active",
+            "manager": "6a48c8b11d2ce3991c1bfedc",
+            "_id": "6a48c8c61d2ce3991c1bff40",
+            "joiningDate": "2026-07-04T08:48:06.073Z",
+            "createdAt": "2026-07-04T08:48:06.074Z",
+            "updatedAt": "2026-07-04T08:48:06.074Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "create employee",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Employee created successfully",
+          "data": {
+            "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+            "user": "6a48c8b51d2ce3991c1bfee5",
+            "firstName": "Eli",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Operations-Updated",
+            "designation": "QA Engineer",
+            "salary": 65000,
+            "profilePicture": "",
+            "status": "Active",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "_id": "6a48c8c61d2ce3991c1bff44",
+            "joiningDate": "2026-07-04T08:48:06.365Z",
+            "createdAt": "2026-07-04T08:48:06.367Z",
+            "updatedAt": "2026-07-04T08:48:06.367Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "create temp",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Employee created successfully",
+          "data": {
+            "employeeId": "smoke-1783154864601-EMP-TEMP",
+            "user": "6a48c8b51d2ce3991c1bfee8",
+            "firstName": "Nova",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Finance",
+            "designation": "Analyst",
+            "salary": 50000,
+            "profilePicture": "",
+            "status": "Inactive",
+            "manager": "6a48c8b31d2ce3991c1bfedf",
+            "_id": "6a48c8c61d2ce3991c1bff48",
+            "joiningDate": "2026-07-04T08:48:06.671Z",
+            "createdAt": "2026-07-04T08:48:06.688Z",
+            "updatedAt": "2026-07-04T08:48:06.688Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "list",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employees fetched successfully",
+          "data": {
+            "employees": [
+              {
+                "_id": "6a48c8c61d2ce3991c1bff48",
+                "employeeId": "smoke-1783154864601-EMP-TEMP",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee8",
+                  "email": "smoke-1783154864601-temp-employee@example.com"
+                },
+                "firstName": "Nova",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Finance",
+                "designation": "Analyst",
+                "salary": 50000,
+                "profilePicture": "",
+                "status": "Inactive",
+                "manager": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "email": "smoke-1783154864601-hr-hr@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.671Z",
+                "createdAt": "2026-07-04T08:48:06.688Z",
+                "updatedAt": "2026-07-04T08:48:06.688Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c61d2ce3991c1bff44",
+                "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "email": "smoke-1783154864601-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.365Z",
+                "createdAt": "2026-07-04T08:48:06.367Z",
+                "updatedAt": "2026-07-04T08:48:06.367Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c61d2ce3991c1bff40",
+                "employeeId": "smoke-1783154864601-EMP-MANAGER",
+                "user": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "firstName": "Mason",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "Operations Manager",
+                "salary": 90000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b11d2ce3991c1bfedc",
+                  "email": "smoke-1783154864601-admin-admin@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.073Z",
+                "createdAt": "2026-07-04T08:48:06.074Z",
+                "updatedAt": "2026-07-04T08:48:06.074Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff3c",
+                "employeeId": "smoke-1783154864601-EMP-HR",
+                "user": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "email": "smoke-1783154864601-hr-hr@example.com"
+                },
+                "firstName": "Harper",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Finance",
+                "designation": "HR Lead",
+                "salary": 85000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:05.838Z",
+                "createdAt": "2026-07-04T08:48:05.839Z",
+                "updatedAt": "2026-07-04T08:48:05.839Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff38",
+                "employeeId": "smoke-1783154864601-EMP-ADMIN",
+                "user": {
+                  "_id": "6a48c8b11d2ce3991c1bfedc",
+                  "email": "smoke-1783154864601-admin-admin@example.com"
+                },
+                "firstName": "Ava",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "Administrator",
+                "salary": 95000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:05.521Z",
+                "createdAt": "2026-07-04T08:48:05.522Z",
+                "updatedAt": "2026-07-04T08:48:05.522Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c793e63069786d937e5b",
+                "employeeId": "smoke-1783154567402-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c789e63069786d937dfc",
+                  "email": "smoke-1783154567402-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "designation": "Senior QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:59.234Z",
+                "createdAt": "2026-07-04T08:42:59.234Z",
+                "updatedAt": "2026-07-04T08:43:01.361Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c793e63069786d937e57",
+                "employeeId": "smoke-1783154567402-EMP-MANAGER",
+                "user": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "firstName": "Mason",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "designation": "Operations Manager",
+                "salary": 90000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c788e63069786d937df3",
+                  "email": "smoke-1783154567402-admin-admin@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:59.082Z",
+                "createdAt": "2026-07-04T08:42:59.082Z",
+                "updatedAt": "2026-07-04T08:42:59.082Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c792e63069786d937e53",
+                "employeeId": "smoke-1783154567402-EMP-HR",
+                "user": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "email": "smoke-1783154567402-hr-hr@example.com"
+                },
+                "firstName": "Harper",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Finance",
+                "designation": "HR Lead",
+                "salary": 85000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:58.843Z",
+                "createdAt": "2026-07-04T08:42:58.844Z",
+                "updatedAt": "2026-07-04T08:42:58.844Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c792e63069786d937e4f",
+                "employeeId": "smoke-1783154567402-EMP-ADMIN",
+                "user": {
+                  "_id": "6a48c788e63069786d937df3",
+                  "email": "smoke-1783154567402-admin-admin@example.com"
+                },
+                "firstName": "Ava",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "designation": "Administrator",
+                "salary": 95000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:58.602Z",
+                "createdAt": "2026-07-04T08:42:58.604Z",
+                "updatedAt": "2026-07-04T08:42:58.604Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc10780c65bf595d1874",
+                "employeeId": "DASH-1783151632324-Employee",
+                "user": {
+                  "_id": "6a48bc0e780c65bf595d1862",
+                  "email": "employee-dashboard-test-1783151630581-3664@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:52.521Z",
+                "createdAt": "2026-07-04T07:53:52.522Z",
+                "updatedAt": "2026-07-04T07:53:52.522Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc10780c65bf595d1870",
+                "employeeId": "DASH-1783151632017-HR",
+                "user": {
+                  "_id": "6a48bc0e780c65bf595d185f",
+                  "email": "hr-dashboard-test-1783151630293-2325@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:52.209Z",
+                "createdAt": "2026-07-04T07:53:52.210Z",
+                "updatedAt": "2026-07-04T07:53:52.210Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc0f780c65bf595d186c",
+                "employeeId": "DASH-1783151631657-Admin",
+                "user": {
+                  "_id": "6a48bc0e780c65bf595d185c",
+                  "email": "admin-dashboard-test-1783151629828-2021@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:51.886Z",
+                "createdAt": "2026-07-04T07:53:51.887Z",
+                "updatedAt": "2026-07-04T07:53:51.887Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbadbca1d723ade8e4a8",
+                "employeeId": "DASH-1783151533712-Employee",
+                "user": {
+                  "_id": "6a48bbacbca1d723ade8e496",
+                  "email": "employee-dashboard-test-1783151532081-8978@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:52:13.812Z",
+                "createdAt": "2026-07-04T07:52:13.813Z",
+                "updatedAt": "2026-07-04T07:52:13.813Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbadbca1d723ade8e4a4",
+                "employeeId": "DASH-1783151533561-HR",
+                "user": {
+                  "_id": "6a48bbabbca1d723ade8e493",
+                  "email": "hr-dashboard-test-1783151531884-7480@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:52:13.674Z",
+                "createdAt": "2026-07-04T07:52:13.675Z",
+                "updatedAt": "2026-07-04T07:52:13.675Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbadbca1d723ade8e4a0",
+                "employeeId": "DASH-1783151533411-Admin",
+                "user": {
+                  "_id": "6a48bbabbca1d723ade8e490",
+                  "email": "admin-dashboard-test-1783151531520-75@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:52:13.479Z",
+                "createdAt": "2026-07-04T07:52:13.479Z",
+                "updatedAt": "2026-07-04T07:52:13.479Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e47a",
+                "employeeId": "DASH-1783151444536-Employee",
+                "user": {
+                  "_id": "6a48bb52bca1d723ade8e468",
+                  "email": "employee-dashboard-test-1783151442732-8517@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:44.693Z",
+                "createdAt": "2026-07-04T07:50:44.694Z",
+                "updatedAt": "2026-07-04T07:50:44.694Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e476",
+                "employeeId": "DASH-1783151444284-HR",
+                "user": {
+                  "_id": "6a48bb52bca1d723ade8e465",
+                  "email": "hr-dashboard-test-1783151442482-4451@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:44.393Z",
+                "createdAt": "2026-07-04T07:50:44.394Z",
+                "updatedAt": "2026-07-04T07:50:44.394Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e472",
+                "employeeId": "DASH-1783151443998-Admin",
+                "user": {
+                  "_id": "6a48bb52bca1d723ade8e462",
+                  "email": "admin-dashboard-test-1783151442191-75@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:44.188Z",
+                "createdAt": "2026-07-04T07:50:44.189Z",
+                "updatedAt": "2026-07-04T07:50:44.189Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb35bca1d723ade8e45f",
+                "employeeId": "DASH-1783151413183-Employee",
+                "user": {
+                  "_id": "6a48bb33bca1d723ade8e44d",
+                  "email": "employee-dashboard-test-1783151411752-606@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:13.390Z",
+                "createdAt": "2026-07-04T07:50:13.391Z",
+                "updatedAt": "2026-07-04T07:50:13.391Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb35bca1d723ade8e45b",
+                "employeeId": "DASH-1783151412877-HR",
+                "user": {
+                  "_id": "6a48bb33bca1d723ade8e44a",
+                  "email": "hr-dashboard-test-1783151411453-6264@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:13.065Z",
+                "createdAt": "2026-07-04T07:50:13.066Z",
+                "updatedAt": "2026-07-04T07:50:13.066Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 41,
+              "page": 1,
+              "limit": 20,
+              "pages": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "pagination",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employees fetched successfully",
+          "data": {
+            "employees": [
+              {
+                "_id": "6a48c8c61d2ce3991c1bff48",
+                "employeeId": "smoke-1783154864601-EMP-TEMP",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee8",
+                  "email": "smoke-1783154864601-temp-employee@example.com"
+                },
+                "firstName": "Nova",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Finance",
+                "designation": "Analyst",
+                "salary": 50000,
+                "profilePicture": "",
+                "status": "Inactive",
+                "manager": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "email": "smoke-1783154864601-hr-hr@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.671Z",
+                "createdAt": "2026-07-04T08:48:06.688Z",
+                "updatedAt": "2026-07-04T08:48:06.688Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c61d2ce3991c1bff44",
+                "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "email": "smoke-1783154864601-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.365Z",
+                "createdAt": "2026-07-04T08:48:06.367Z",
+                "updatedAt": "2026-07-04T08:48:06.367Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 41,
+              "page": 1,
+              "limit": 2,
+              "pages": 21
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "search",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employees fetched successfully",
+          "data": {
+            "employees": [
+              {
+                "_id": "6a48c8c61d2ce3991c1bff44",
+                "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "email": "smoke-1783154864601-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.365Z",
+                "createdAt": "2026-07-04T08:48:06.367Z",
+                "updatedAt": "2026-07-04T08:48:06.367Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 1,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "department filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employees fetched successfully",
+          "data": {
+            "employees": [
+              {
+                "_id": "6a48c8c61d2ce3991c1bff44",
+                "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "email": "smoke-1783154864601-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.365Z",
+                "createdAt": "2026-07-04T08:48:06.367Z",
+                "updatedAt": "2026-07-04T08:48:06.367Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c61d2ce3991c1bff40",
+                "employeeId": "smoke-1783154864601-EMP-MANAGER",
+                "user": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "firstName": "Mason",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "Operations Manager",
+                "salary": 90000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b11d2ce3991c1bfedc",
+                  "email": "smoke-1783154864601-admin-admin@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.073Z",
+                "createdAt": "2026-07-04T08:48:06.074Z",
+                "updatedAt": "2026-07-04T08:48:06.074Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff38",
+                "employeeId": "smoke-1783154864601-EMP-ADMIN",
+                "user": {
+                  "_id": "6a48c8b11d2ce3991c1bfedc",
+                  "email": "smoke-1783154864601-admin-admin@example.com"
+                },
+                "firstName": "Ava",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "Administrator",
+                "salary": 95000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:05.521Z",
+                "createdAt": "2026-07-04T08:48:05.522Z",
+                "updatedAt": "2026-07-04T08:48:05.522Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 3,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "status filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employees fetched successfully",
+          "data": {
+            "employees": [
+              {
+                "_id": "6a48c8c61d2ce3991c1bff44",
+                "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "email": "smoke-1783154864601-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.365Z",
+                "createdAt": "2026-07-04T08:48:06.367Z",
+                "updatedAt": "2026-07-04T08:48:06.367Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c61d2ce3991c1bff40",
+                "employeeId": "smoke-1783154864601-EMP-MANAGER",
+                "user": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "firstName": "Mason",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "Operations Manager",
+                "salary": 90000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b11d2ce3991c1bfedc",
+                  "email": "smoke-1783154864601-admin-admin@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:06.073Z",
+                "createdAt": "2026-07-04T08:48:06.074Z",
+                "updatedAt": "2026-07-04T08:48:06.074Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff3c",
+                "employeeId": "smoke-1783154864601-EMP-HR",
+                "user": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "email": "smoke-1783154864601-hr-hr@example.com"
+                },
+                "firstName": "Harper",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Finance",
+                "designation": "HR Lead",
+                "salary": 85000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:05.838Z",
+                "createdAt": "2026-07-04T08:48:05.839Z",
+                "updatedAt": "2026-07-04T08:48:05.839Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff38",
+                "employeeId": "smoke-1783154864601-EMP-ADMIN",
+                "user": {
+                  "_id": "6a48c8b11d2ce3991c1bfedc",
+                  "email": "smoke-1783154864601-admin-admin@example.com"
+                },
+                "firstName": "Ava",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "designation": "Administrator",
+                "salary": 95000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c8b41d2ce3991c1bfee2",
+                  "email": "smoke-1783154864601-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:48:05.521Z",
+                "createdAt": "2026-07-04T08:48:05.522Z",
+                "updatedAt": "2026-07-04T08:48:05.522Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c793e63069786d937e5b",
+                "employeeId": "smoke-1783154567402-EMP-EMPLOYEE",
+                "user": {
+                  "_id": "6a48c789e63069786d937dfc",
+                  "email": "smoke-1783154567402-employee-employee@example.com"
+                },
+                "firstName": "Eli",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "designation": "Senior QA Engineer",
+                "salary": 65000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:59.234Z",
+                "createdAt": "2026-07-04T08:42:59.234Z",
+                "updatedAt": "2026-07-04T08:43:01.361Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c793e63069786d937e57",
+                "employeeId": "smoke-1783154567402-EMP-MANAGER",
+                "user": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "firstName": "Mason",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "designation": "Operations Manager",
+                "salary": 90000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c788e63069786d937df3",
+                  "email": "smoke-1783154567402-admin-admin@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:59.082Z",
+                "createdAt": "2026-07-04T08:42:59.082Z",
+                "updatedAt": "2026-07-04T08:42:59.082Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c792e63069786d937e53",
+                "employeeId": "smoke-1783154567402-EMP-HR",
+                "user": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "email": "smoke-1783154567402-hr-hr@example.com"
+                },
+                "firstName": "Harper",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Finance",
+                "designation": "HR Lead",
+                "salary": 85000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:58.843Z",
+                "createdAt": "2026-07-04T08:42:58.844Z",
+                "updatedAt": "2026-07-04T08:42:58.844Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c792e63069786d937e4f",
+                "employeeId": "smoke-1783154567402-EMP-ADMIN",
+                "user": {
+                  "_id": "6a48c788e63069786d937df3",
+                  "email": "smoke-1783154567402-admin-admin@example.com"
+                },
+                "firstName": "Ava",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "designation": "Administrator",
+                "salary": 95000,
+                "profilePicture": "",
+                "status": "Active",
+                "manager": {
+                  "_id": "6a48c789e63069786d937df9",
+                  "email": "smoke-1783154567402-manager-manager@example.com"
+                },
+                "joiningDate": "2026-07-04T08:42:58.602Z",
+                "createdAt": "2026-07-04T08:42:58.604Z",
+                "updatedAt": "2026-07-04T08:42:58.604Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc10780c65bf595d1874",
+                "employeeId": "DASH-1783151632324-Employee",
+                "user": {
+                  "_id": "6a48bc0e780c65bf595d1862",
+                  "email": "employee-dashboard-test-1783151630581-3664@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:52.521Z",
+                "createdAt": "2026-07-04T07:53:52.522Z",
+                "updatedAt": "2026-07-04T07:53:52.522Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc10780c65bf595d1870",
+                "employeeId": "DASH-1783151632017-HR",
+                "user": {
+                  "_id": "6a48bc0e780c65bf595d185f",
+                  "email": "hr-dashboard-test-1783151630293-2325@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:52.209Z",
+                "createdAt": "2026-07-04T07:53:52.210Z",
+                "updatedAt": "2026-07-04T07:53:52.210Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc0f780c65bf595d186c",
+                "employeeId": "DASH-1783151631657-Admin",
+                "user": {
+                  "_id": "6a48bc0e780c65bf595d185c",
+                  "email": "admin-dashboard-test-1783151629828-2021@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:53:51.886Z",
+                "createdAt": "2026-07-04T07:53:51.887Z",
+                "updatedAt": "2026-07-04T07:53:51.887Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbadbca1d723ade8e4a8",
+                "employeeId": "DASH-1783151533712-Employee",
+                "user": {
+                  "_id": "6a48bbacbca1d723ade8e496",
+                  "email": "employee-dashboard-test-1783151532081-8978@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:52:13.812Z",
+                "createdAt": "2026-07-04T07:52:13.813Z",
+                "updatedAt": "2026-07-04T07:52:13.813Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbadbca1d723ade8e4a4",
+                "employeeId": "DASH-1783151533561-HR",
+                "user": {
+                  "_id": "6a48bbabbca1d723ade8e493",
+                  "email": "hr-dashboard-test-1783151531884-7480@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:52:13.674Z",
+                "createdAt": "2026-07-04T07:52:13.675Z",
+                "updatedAt": "2026-07-04T07:52:13.675Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbadbca1d723ade8e4a0",
+                "employeeId": "DASH-1783151533411-Admin",
+                "user": {
+                  "_id": "6a48bbabbca1d723ade8e490",
+                  "email": "admin-dashboard-test-1783151531520-75@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:52:13.479Z",
+                "createdAt": "2026-07-04T07:52:13.479Z",
+                "updatedAt": "2026-07-04T07:52:13.479Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e47a",
+                "employeeId": "DASH-1783151444536-Employee",
+                "user": {
+                  "_id": "6a48bb52bca1d723ade8e468",
+                  "email": "employee-dashboard-test-1783151442732-8517@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:44.693Z",
+                "createdAt": "2026-07-04T07:50:44.694Z",
+                "updatedAt": "2026-07-04T07:50:44.694Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e476",
+                "employeeId": "DASH-1783151444284-HR",
+                "user": {
+                  "_id": "6a48bb52bca1d723ade8e465",
+                  "email": "hr-dashboard-test-1783151442482-4451@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:44.393Z",
+                "createdAt": "2026-07-04T07:50:44.394Z",
+                "updatedAt": "2026-07-04T07:50:44.394Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e472",
+                "employeeId": "DASH-1783151443998-Admin",
+                "user": {
+                  "_id": "6a48bb52bca1d723ade8e462",
+                  "email": "admin-dashboard-test-1783151442191-75@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:44.188Z",
+                "createdAt": "2026-07-04T07:50:44.189Z",
+                "updatedAt": "2026-07-04T07:50:44.189Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb35bca1d723ade8e45f",
+                "employeeId": "DASH-1783151413183-Employee",
+                "user": {
+                  "_id": "6a48bb33bca1d723ade8e44d",
+                  "email": "employee-dashboard-test-1783151411752-606@example.com"
+                },
+                "firstName": "Employee",
+                "lastName": "Dashboard",
+                "department": "IT",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:13.390Z",
+                "createdAt": "2026-07-04T07:50:13.391Z",
+                "updatedAt": "2026-07-04T07:50:13.391Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb35bca1d723ade8e45b",
+                "employeeId": "DASH-1783151412877-HR",
+                "user": {
+                  "_id": "6a48bb33bca1d723ade8e44a",
+                  "email": "hr-dashboard-test-1783151411453-6264@example.com"
+                },
+                "firstName": "HR",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:13.065Z",
+                "createdAt": "2026-07-04T07:50:13.066Z",
+                "updatedAt": "2026-07-04T07:50:13.066Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb34bca1d723ade8e457",
+                "employeeId": "DASH-1783151412674-Admin",
+                "user": {
+                  "_id": "6a48bb33bca1d723ade8e447",
+                  "email": "admin-dashboard-test-1783151411107-8462@example.com"
+                },
+                "firstName": "Admin",
+                "lastName": "Dashboard",
+                "department": "Finance",
+                "profilePicture": "",
+                "status": "Active",
+                "joiningDate": "2026-07-04T07:50:12.773Z",
+                "createdAt": "2026-07-04T07:50:12.774Z",
+                "updatedAt": "2026-07-04T07:50:12.774Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 40,
+              "page": 1,
+              "limit": 20,
+              "pages": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "get by id",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employee fetched successfully",
+          "data": {
+            "_id": "6a48c8c61d2ce3991c1bff44",
+            "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+            "user": {
+              "_id": "6a48c8b51d2ce3991c1bfee5",
+              "email": "smoke-1783154864601-employee-employee@example.com",
+              "role": "Employee"
+            },
+            "firstName": "Eli",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Operations-Updated",
+            "designation": "QA Engineer",
+            "salary": 65000,
+            "profilePicture": "",
+            "status": "Active",
+            "manager": {
+              "_id": "6a48c8b41d2ce3991c1bfee2",
+              "email": "smoke-1783154864601-manager-manager@example.com",
+              "role": "Manager"
+            },
+            "joiningDate": "2026-07-04T08:48:06.365Z",
+            "createdAt": "2026-07-04T08:48:06.367Z",
+            "updatedAt": "2026-07-04T08:48:06.367Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "update",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employee updated successfully",
+          "data": {
+            "_id": "6a48c8c61d2ce3991c1bff44",
+            "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+            "user": "6a48c8b51d2ce3991c1bfee5",
+            "firstName": "Eli",
+            "lastName": "smoke-1783154864601",
+            "department": "smoke-1783154864601-Operations-Updated",
+            "designation": "Senior QA Engineer",
+            "salary": 65000,
+            "profilePicture": "",
+            "status": "Active",
+            "manager": "6a48c8b41d2ce3991c1bfee2",
+            "joiningDate": "2026-07-04T08:48:06.365Z",
+            "createdAt": "2026-07-04T08:48:06.367Z",
+            "updatedAt": "2026-07-04T08:48:10.037Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "mongo persistence after update",
+      "ok": true,
+      "id": "6a48c8c61d2ce3991c1bff44",
+      "document": {
+        "_id": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 198,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 68
+          }
+        },
+        "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+        "user": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 181,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 229
+          }
+        },
+        "firstName": "Eli",
+        "lastName": "smoke-1783154864601",
+        "department": "smoke-1783154864601-Operations-Updated",
+        "designation": "Senior QA Engineer",
+        "salary": 65000,
+        "profilePicture": "",
+        "status": "Active",
+        "manager": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 180,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 226
+          }
+        },
+        "joiningDate": {},
+        "createdAt": {},
+        "updatedAt": {},
+        "__v": 0
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "delete",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Employee deleted successfully",
+          "data": null
+        }
+      }
+    },
+    {
+      "module": "EMPLOYEE",
+      "name": "mongo persistence after delete",
+      "ok": true,
+      "id": "6a48c8c61d2ce3991c1bff48",
+      "document": null
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "checkin validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid check-in data",
+          "errors": [
+            {
+              "expected": "string",
+              "code": "invalid_type",
+              "path": [
+                "employee"
+              ],
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "checkin",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Check-in recorded successfully",
+          "data": {
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "date": "2026-07-04T08:48:10.837Z",
+            "status": "Present",
+            "workingHours": 0,
+            "remarks": "smoke-1783154864601 checkin",
+            "markedBy": "6a48c8b51d2ce3991c1bfee5",
+            "_id": "6a48c8ca1d2ce3991c1bff6f",
+            "checkIn": "2026-07-04T08:48:10.838Z",
+            "createdAt": "2026-07-04T08:48:10.839Z",
+            "updatedAt": "2026-07-04T08:48:10.839Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "mongo persistence after checkin",
+      "ok": true,
+      "id": "6a48c8ca1d2ce3991c1bff6f",
+      "document": {
+        "_id": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 202,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 111
+          }
+        },
+        "employee": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 198,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 68
+          }
+        },
+        "date": {},
+        "status": "Present",
+        "workingHours": 0,
+        "remarks": "smoke-1783154864601 checkin",
+        "markedBy": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 181,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 229
+          }
+        },
+        "checkIn": {},
+        "createdAt": {},
+        "updatedAt": {},
+        "__v": 0
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "duplicate checkin rejected",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Employee has already checked in today",
+          "errors": null
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "checkout validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid check-out data",
+          "errors": [
+            {
+              "expected": "string",
+              "code": "invalid_type",
+              "path": [
+                "employee"
+              ],
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "checkout",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Check-out recorded successfully",
+          "data": {
+            "_id": "6a48c8ca1d2ce3991c1bff6f",
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "date": "2026-07-04T08:48:10.837Z",
+            "status": "Present",
+            "workingHours": 0,
+            "remarks": "smoke-1783154864601 checkout",
+            "markedBy": "6a48c8b51d2ce3991c1bfee5",
+            "checkIn": "2026-07-04T08:48:10.838Z",
+            "createdAt": "2026-07-04T08:48:10.839Z",
+            "updatedAt": "2026-07-04T08:48:11.658Z",
+            "__v": 0,
+            "checkOut": "2026-07-04T08:48:11.656Z"
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "me",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "My attendance fetched successfully",
+          "data": {
+            "todayAttendance": {
+              "_id": "6a48c8ca1d2ce3991c1bff6f",
+              "employee": "6a48c8c61d2ce3991c1bff44",
+              "date": "2026-07-04T08:48:10.837Z",
+              "status": "Present",
+              "workingHours": 0,
+              "remarks": "smoke-1783154864601 checkout",
+              "markedBy": "6a48c8b51d2ce3991c1bfee5",
+              "checkIn": "2026-07-04T08:48:10.838Z",
+              "createdAt": "2026-07-04T08:48:10.839Z",
+              "updatedAt": "2026-07-04T08:48:11.658Z",
+              "__v": 0,
+              "checkOut": "2026-07-04T08:48:11.656Z"
+            },
+            "monthlyAttendance": [
+              {
+                "_id": "6a48c8ca1d2ce3991c1bff6f",
+                "employee": "6a48c8c61d2ce3991c1bff44",
+                "date": "2026-07-04T08:48:10.837Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154864601 checkout",
+                "markedBy": "6a48c8b51d2ce3991c1bfee5",
+                "checkIn": "2026-07-04T08:48:10.838Z",
+                "createdAt": "2026-07-04T08:48:10.839Z",
+                "updatedAt": "2026-07-04T08:48:11.658Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:48:11.656Z"
+              }
+            ],
+            "statistics": {
+              "Present": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "list",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Attendance records fetched successfully",
+          "data": {
+            "attendance": [
+              {
+                "_id": "6a48c8ca1d2ce3991c1bff6f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "date": "2026-07-04T08:48:10.837Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154864601 checkout",
+                "markedBy": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154864601-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:48:10.838Z",
+                "createdAt": "2026-07-04T08:48:10.839Z",
+                "updatedAt": "2026-07-04T08:48:11.658Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:48:11.656Z"
+              },
+              {
+                "_id": "6a48c796e63069786d937e86",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "date": "2026-07-04T08:43:02.294Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154567402 checkout",
+                "markedBy": {
+                  "_id": "6a48c789e63069786d937dfc",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154567402-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:43:02.294Z",
+                "createdAt": "2026-07-04T08:43:02.295Z",
+                "updatedAt": "2026-07-04T08:43:03.049Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:43:03.048Z"
+              },
+              {
+                "_id": "6a48bc11780c65bf595d187e",
+                "employee": {
+                  "_id": "6a48bc0f780c65bf595d186c",
+                  "firstName": "Admin",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "date": "2026-07-04T07:53:53.437Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bc0e780c65bf595d185c",
+                  "name": "Admin Tester",
+                  "email": "admin-dashboard-test-1783151629828-2021@example.com",
+                  "role": "Admin"
+                },
+                "checkIn": "2026-07-04T07:53:53.437Z",
+                "createdAt": "2026-07-04T07:53:53.438Z",
+                "updatedAt": "2026-07-04T07:53:53.438Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc11780c65bf595d1879",
+                "employee": {
+                  "_id": "6a48bc10780c65bf595d1874",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "date": "2026-07-04T07:53:53.028Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bc0e780c65bf595d1862",
+                  "name": "Employee Tester",
+                  "email": "employee-dashboard-test-1783151630581-3664@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T07:53:53.029Z",
+                "createdAt": "2026-07-04T07:53:53.032Z",
+                "updatedAt": "2026-07-04T07:53:53.032Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4b2",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a0",
+                  "firstName": "Admin",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "date": "2026-07-04T07:52:14.272Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bbabbca1d723ade8e490",
+                  "name": "Admin Tester",
+                  "email": "admin-dashboard-test-1783151531520-75@example.com",
+                  "role": "Admin"
+                },
+                "checkIn": "2026-07-04T07:52:14.273Z",
+                "createdAt": "2026-07-04T07:52:14.273Z",
+                "updatedAt": "2026-07-04T07:52:14.273Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4ad",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a8",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "date": "2026-07-04T07:52:14.053Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bbacbca1d723ade8e496",
+                  "name": "Employee Tester",
+                  "email": "employee-dashboard-test-1783151532081-8978@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T07:52:14.053Z",
+                "createdAt": "2026-07-04T07:52:14.053Z",
+                "updatedAt": "2026-07-04T07:52:14.053Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb55bca1d723ade8e484",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e472",
+                  "firstName": "Admin",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "date": "2026-07-04T07:50:45.339Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bb52bca1d723ade8e462",
+                  "name": "Admin Tester",
+                  "email": "admin-dashboard-test-1783151442191-75@example.com",
+                  "role": "Admin"
+                },
+                "checkIn": "2026-07-04T07:50:45.339Z",
+                "createdAt": "2026-07-04T07:50:45.340Z",
+                "updatedAt": "2026-07-04T07:50:45.340Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e47f",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e47a",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "date": "2026-07-04T07:50:44.996Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bb52bca1d723ade8e468",
+                  "name": "Employee Tester",
+                  "email": "employee-dashboard-test-1783151442732-8517@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T07:50:44.997Z",
+                "createdAt": "2026-07-04T07:50:44.998Z",
+                "updatedAt": "2026-07-04T07:50:44.998Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 8,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "pagination",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Attendance records fetched successfully",
+          "data": {
+            "attendance": [
+              {
+                "_id": "6a48c8ca1d2ce3991c1bff6f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "date": "2026-07-04T08:48:10.837Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154864601 checkout",
+                "markedBy": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154864601-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:48:10.838Z",
+                "createdAt": "2026-07-04T08:48:10.839Z",
+                "updatedAt": "2026-07-04T08:48:11.658Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:48:11.656Z"
+              }
+            ],
+            "pagination": {
+              "total": 8,
+              "page": 1,
+              "limit": 1,
+              "pages": 8
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "search",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Attendance records fetched successfully",
+          "data": {
+            "attendance": [
+              {
+                "_id": "6a48c8ca1d2ce3991c1bff6f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "date": "2026-07-04T08:48:10.837Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154864601 checkout",
+                "markedBy": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154864601-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:48:10.838Z",
+                "createdAt": "2026-07-04T08:48:10.839Z",
+                "updatedAt": "2026-07-04T08:48:11.658Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:48:11.656Z"
+              },
+              {
+                "_id": "6a48c796e63069786d937e86",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "date": "2026-07-04T08:43:02.294Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154567402 checkout",
+                "markedBy": {
+                  "_id": "6a48c789e63069786d937dfc",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154567402-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:43:02.294Z",
+                "createdAt": "2026-07-04T08:43:02.295Z",
+                "updatedAt": "2026-07-04T08:43:03.049Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:43:03.048Z"
+              }
+            ],
+            "pagination": {
+              "total": 2,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "status filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Attendance records fetched successfully",
+          "data": {
+            "attendance": [
+              {
+                "_id": "6a48c8ca1d2ce3991c1bff6f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "date": "2026-07-04T08:48:10.837Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154864601 checkout",
+                "markedBy": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154864601-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:48:10.838Z",
+                "createdAt": "2026-07-04T08:48:10.839Z",
+                "updatedAt": "2026-07-04T08:48:11.658Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:48:11.656Z"
+              },
+              {
+                "_id": "6a48c796e63069786d937e86",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "date": "2026-07-04T08:43:02.294Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154567402 checkout",
+                "markedBy": {
+                  "_id": "6a48c789e63069786d937dfc",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154567402-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:43:02.294Z",
+                "createdAt": "2026-07-04T08:43:02.295Z",
+                "updatedAt": "2026-07-04T08:43:03.049Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:43:03.048Z"
+              },
+              {
+                "_id": "6a48bc11780c65bf595d187e",
+                "employee": {
+                  "_id": "6a48bc0f780c65bf595d186c",
+                  "firstName": "Admin",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "date": "2026-07-04T07:53:53.437Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bc0e780c65bf595d185c",
+                  "name": "Admin Tester",
+                  "email": "admin-dashboard-test-1783151629828-2021@example.com",
+                  "role": "Admin"
+                },
+                "checkIn": "2026-07-04T07:53:53.437Z",
+                "createdAt": "2026-07-04T07:53:53.438Z",
+                "updatedAt": "2026-07-04T07:53:53.438Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc11780c65bf595d1879",
+                "employee": {
+                  "_id": "6a48bc10780c65bf595d1874",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "date": "2026-07-04T07:53:53.028Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bc0e780c65bf595d1862",
+                  "name": "Employee Tester",
+                  "email": "employee-dashboard-test-1783151630581-3664@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T07:53:53.029Z",
+                "createdAt": "2026-07-04T07:53:53.032Z",
+                "updatedAt": "2026-07-04T07:53:53.032Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4b2",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a0",
+                  "firstName": "Admin",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "date": "2026-07-04T07:52:14.272Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bbabbca1d723ade8e490",
+                  "name": "Admin Tester",
+                  "email": "admin-dashboard-test-1783151531520-75@example.com",
+                  "role": "Admin"
+                },
+                "checkIn": "2026-07-04T07:52:14.273Z",
+                "createdAt": "2026-07-04T07:52:14.273Z",
+                "updatedAt": "2026-07-04T07:52:14.273Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4ad",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a8",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "date": "2026-07-04T07:52:14.053Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bbacbca1d723ade8e496",
+                  "name": "Employee Tester",
+                  "email": "employee-dashboard-test-1783151532081-8978@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T07:52:14.053Z",
+                "createdAt": "2026-07-04T07:52:14.053Z",
+                "updatedAt": "2026-07-04T07:52:14.053Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb55bca1d723ade8e484",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e472",
+                  "firstName": "Admin",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "date": "2026-07-04T07:50:45.339Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bb52bca1d723ade8e462",
+                  "name": "Admin Tester",
+                  "email": "admin-dashboard-test-1783151442191-75@example.com",
+                  "role": "Admin"
+                },
+                "checkIn": "2026-07-04T07:50:45.339Z",
+                "createdAt": "2026-07-04T07:50:45.340Z",
+                "updatedAt": "2026-07-04T07:50:45.340Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb54bca1d723ade8e47f",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e47a",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "date": "2026-07-04T07:50:44.996Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "",
+                "markedBy": {
+                  "_id": "6a48bb52bca1d723ade8e468",
+                  "name": "Employee Tester",
+                  "email": "employee-dashboard-test-1783151442732-8517@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T07:50:44.997Z",
+                "createdAt": "2026-07-04T07:50:44.998Z",
+                "updatedAt": "2026-07-04T07:50:44.998Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 8,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "department filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Attendance records fetched successfully",
+          "data": {
+            "attendance": [
+              {
+                "_id": "6a48c8ca1d2ce3991c1bff6f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "date": "2026-07-04T08:48:10.837Z",
+                "status": "Present",
+                "workingHours": 0,
+                "remarks": "smoke-1783154864601 checkout",
+                "markedBy": {
+                  "_id": "6a48c8b51d2ce3991c1bfee5",
+                  "name": "Employee Employee",
+                  "email": "smoke-1783154864601-employee-employee@example.com",
+                  "role": "Employee"
+                },
+                "checkIn": "2026-07-04T08:48:10.838Z",
+                "createdAt": "2026-07-04T08:48:10.839Z",
+                "updatedAt": "2026-07-04T08:48:11.658Z",
+                "__v": 0,
+                "checkOut": "2026-07-04T08:48:11.656Z"
+              }
+            ],
+            "pagination": {
+              "total": 1,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "ATTENDANCE",
+      "name": "employee forbidden from list",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "create validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid leave application data",
+          "errors": [
+            {
+              "code": "custom",
+              "message": "End date must be the same as or later than the start date",
+              "path": [
+                "endDate"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "create approve",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Leave applied successfully",
+          "data": {
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "leaveType": "Paid",
+            "startDate": "2026-07-05T08:47:44.601Z",
+            "endDate": "2026-07-06T08:47:44.601Z",
+            "reason": "smoke-1783154864601 approve",
+            "status": "Pending",
+            "comments": "",
+            "totalDays": 2,
+            "_id": "6a48c8ce1d2ce3991c1bff9b",
+            "createdAt": "2026-07-04T08:48:14.436Z",
+            "updatedAt": "2026-07-04T08:48:14.436Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "create reject",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Leave applied successfully",
+          "data": {
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "leaveType": "Sick",
+            "startDate": "2026-07-06T08:47:44.601Z",
+            "endDate": "2026-07-07T08:47:44.601Z",
+            "reason": "smoke-1783154864601 reject",
+            "status": "Pending",
+            "comments": "",
+            "totalDays": 2,
+            "_id": "6a48c8ce1d2ce3991c1bff9f",
+            "createdAt": "2026-07-04T08:48:14.740Z",
+            "updatedAt": "2026-07-04T08:48:14.740Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "me",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "My leaves fetched successfully",
+          "data": [
+            {
+              "_id": "6a48c8ce1d2ce3991c1bff9f",
+              "employee": "6a48c8c61d2ce3991c1bff44",
+              "leaveType": "Sick",
+              "startDate": "2026-07-06T08:47:44.601Z",
+              "endDate": "2026-07-07T08:47:44.601Z",
+              "reason": "smoke-1783154864601 reject",
+              "status": "Pending",
+              "comments": "",
+              "totalDays": 2,
+              "createdAt": "2026-07-04T08:48:14.740Z",
+              "updatedAt": "2026-07-04T08:48:14.740Z",
+              "__v": 0
+            },
+            {
+              "_id": "6a48c8ce1d2ce3991c1bff9b",
+              "employee": "6a48c8c61d2ce3991c1bff44",
+              "leaveType": "Paid",
+              "startDate": "2026-07-05T08:47:44.601Z",
+              "endDate": "2026-07-06T08:47:44.601Z",
+              "reason": "smoke-1783154864601 approve",
+              "status": "Pending",
+              "comments": "",
+              "totalDays": 2,
+              "createdAt": "2026-07-04T08:48:14.436Z",
+              "updatedAt": "2026-07-04T08:48:14.436Z",
+              "__v": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "list",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Leaves fetched successfully",
+          "data": {
+            "leaves": [
+              {
+                "_id": "6a48c8ce1d2ce3991c1bff9f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "leaveType": "Sick",
+                "startDate": "2026-07-06T08:47:44.601Z",
+                "endDate": "2026-07-07T08:47:44.601Z",
+                "reason": "smoke-1783154864601 reject",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:48:14.740Z",
+                "updatedAt": "2026-07-04T08:48:14.740Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8ce1d2ce3991c1bff9b",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-05T08:47:44.601Z",
+                "endDate": "2026-07-06T08:47:44.601Z",
+                "reason": "smoke-1783154864601 approve",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:48:14.436Z",
+                "updatedAt": "2026-07-04T08:48:14.436Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc11780c65bf595d1882",
+                "employee": {
+                  "_id": "6a48bc10780c65bf595d1870",
+                  "firstName": "HR",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-04T07:53:52.630Z",
+                "endDate": "2026-07-04T07:53:52.630Z",
+                "reason": "Dashboard leave",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 1,
+                "createdAt": "2026-07-04T07:53:53.745Z",
+                "updatedAt": "2026-07-04T07:53:53.745Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4b6",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a4",
+                  "firstName": "HR",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-04T07:52:13.852Z",
+                "endDate": "2026-07-04T07:52:13.852Z",
+                "reason": "Dashboard leave",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 1,
+                "createdAt": "2026-07-04T07:52:14.396Z",
+                "updatedAt": "2026-07-04T07:52:14.396Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb55bca1d723ade8e488",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e476",
+                  "firstName": "HR",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-04T07:50:44.830Z",
+                "endDate": "2026-07-04T07:50:44.830Z",
+                "reason": "Dashboard leave",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 1,
+                "createdAt": "2026-07-04T07:50:45.446Z",
+                "updatedAt": "2026-07-04T07:50:45.446Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 5,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "pagination",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Leaves fetched successfully",
+          "data": {
+            "leaves": [
+              {
+                "_id": "6a48c8ce1d2ce3991c1bff9f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "leaveType": "Sick",
+                "startDate": "2026-07-06T08:47:44.601Z",
+                "endDate": "2026-07-07T08:47:44.601Z",
+                "reason": "smoke-1783154864601 reject",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:48:14.740Z",
+                "updatedAt": "2026-07-04T08:48:14.740Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 7,
+              "page": 1,
+              "limit": 1,
+              "pages": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "search",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Leaves fetched successfully",
+          "data": {
+            "leaves": [
+              {
+                "_id": "6a48c8ce1d2ce3991c1bff9f",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "leaveType": "Sick",
+                "startDate": "2026-07-06T08:47:44.601Z",
+                "endDate": "2026-07-07T08:47:44.601Z",
+                "reason": "smoke-1783154864601 reject",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:48:14.740Z",
+                "updatedAt": "2026-07-04T08:48:14.740Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8ce1d2ce3991c1bff9b",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-05T08:47:44.601Z",
+                "endDate": "2026-07-06T08:47:44.601Z",
+                "reason": "smoke-1783154864601 approve",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:48:14.436Z",
+                "updatedAt": "2026-07-04T08:48:14.436Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c799e63069786d937eb6",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "leaveType": "Sick",
+                "startDate": "2026-07-06T08:42:47.403Z",
+                "endDate": "2026-07-07T08:42:47.403Z",
+                "reason": "smoke-1783154567402 reject",
+                "status": "Rejected",
+                "comments": "Rejected during smoke test",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:43:05.603Z",
+                "updatedAt": "2026-07-04T08:43:08.224Z",
+                "__v": 0,
+                "approvedAt": "2026-07-04T08:43:08.223Z",
+                "approvedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                }
+              },
+              {
+                "_id": "6a48c799e63069786d937eb2",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-05T08:42:47.403Z",
+                "endDate": "2026-07-06T08:42:47.403Z",
+                "reason": "smoke-1783154567402 approve",
+                "status": "Approved",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:43:05.288Z",
+                "updatedAt": "2026-07-04T08:43:07.951Z",
+                "__v": 0,
+                "approvedAt": "2026-07-04T08:43:07.949Z",
+                "approvedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                }
+              }
+            ],
+            "pagination": {
+              "total": 4,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "leave type filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Leaves fetched successfully",
+          "data": {
+            "leaves": [
+              {
+                "_id": "6a48c8ce1d2ce3991c1bff9b",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-05T08:47:44.601Z",
+                "endDate": "2026-07-06T08:47:44.601Z",
+                "reason": "smoke-1783154864601 approve",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:48:14.436Z",
+                "updatedAt": "2026-07-04T08:48:14.436Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c799e63069786d937eb2",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-05T08:42:47.403Z",
+                "endDate": "2026-07-06T08:42:47.403Z",
+                "reason": "smoke-1783154567402 approve",
+                "status": "Approved",
+                "comments": "",
+                "totalDays": 2,
+                "createdAt": "2026-07-04T08:43:05.288Z",
+                "updatedAt": "2026-07-04T08:43:07.951Z",
+                "__v": 0,
+                "approvedAt": "2026-07-04T08:43:07.949Z",
+                "approvedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                }
+              },
+              {
+                "_id": "6a48bc11780c65bf595d1882",
+                "employee": {
+                  "_id": "6a48bc10780c65bf595d1870",
+                  "firstName": "HR",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-04T07:53:52.630Z",
+                "endDate": "2026-07-04T07:53:52.630Z",
+                "reason": "Dashboard leave",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 1,
+                "createdAt": "2026-07-04T07:53:53.745Z",
+                "updatedAt": "2026-07-04T07:53:53.745Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4b6",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a4",
+                  "firstName": "HR",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-04T07:52:13.852Z",
+                "endDate": "2026-07-04T07:52:13.852Z",
+                "reason": "Dashboard leave",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 1,
+                "createdAt": "2026-07-04T07:52:14.396Z",
+                "updatedAt": "2026-07-04T07:52:14.396Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bb55bca1d723ade8e488",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e476",
+                  "firstName": "HR",
+                  "lastName": "Dashboard",
+                  "department": "Finance"
+                },
+                "leaveType": "Paid",
+                "startDate": "2026-07-04T07:50:44.830Z",
+                "endDate": "2026-07-04T07:50:44.830Z",
+                "reason": "Dashboard leave",
+                "status": "Pending",
+                "comments": "",
+                "totalDays": 1,
+                "createdAt": "2026-07-04T07:50:45.446Z",
+                "updatedAt": "2026-07-04T07:50:45.446Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 5,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "approve",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Leave approved successfully",
+          "data": {
+            "_id": "6a48c8ce1d2ce3991c1bff9b",
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "leaveType": "Paid",
+            "startDate": "2026-07-05T08:47:44.601Z",
+            "endDate": "2026-07-06T08:47:44.601Z",
+            "reason": "smoke-1783154864601 approve",
+            "status": "Approved",
+            "comments": "",
+            "totalDays": 2,
+            "createdAt": "2026-07-04T08:48:14.436Z",
+            "updatedAt": "2026-07-04T08:48:16.383Z",
+            "__v": 0,
+            "approvedBy": "6a48c8b31d2ce3991c1bfedf",
+            "approvedAt": "2026-07-04T08:48:16.381Z"
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "reject",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Leave rejected successfully",
+          "data": {
+            "_id": "6a48c8ce1d2ce3991c1bff9f",
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "leaveType": "Sick",
+            "startDate": "2026-07-06T08:47:44.601Z",
+            "endDate": "2026-07-07T08:47:44.601Z",
+            "reason": "smoke-1783154864601 reject",
+            "status": "Rejected",
+            "comments": "Rejected during smoke test",
+            "totalDays": 2,
+            "createdAt": "2026-07-04T08:48:14.740Z",
+            "updatedAt": "2026-07-04T08:48:16.594Z",
+            "__v": 0,
+            "approvedBy": "6a48c8b31d2ce3991c1bfedf",
+            "approvedAt": "2026-07-04T08:48:16.593Z"
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "mongo persistence after approval",
+      "ok": true,
+      "id": "6a48c8ce1d2ce3991c1bff9b",
+      "document": {
+        "_id": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 206,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 155
+          }
+        },
+        "employee": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 198,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 68
+          }
+        },
+        "leaveType": "Paid",
+        "startDate": {},
+        "endDate": {},
+        "reason": "smoke-1783154864601 approve",
+        "status": "Approved",
+        "comments": "",
+        "totalDays": 2,
+        "createdAt": {},
+        "updatedAt": {},
+        "__v": 0,
+        "approvedAt": {},
+        "approvedBy": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 179,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 223
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "mongo persistence after rejection",
+      "ok": true,
+      "id": "6a48c8ce1d2ce3991c1bff9f",
+      "document": {
+        "_id": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 206,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 159
+          }
+        },
+        "employee": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 198,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 68
+          }
+        },
+        "leaveType": "Sick",
+        "startDate": {},
+        "endDate": {},
+        "reason": "smoke-1783154864601 reject",
+        "status": "Rejected",
+        "comments": "Rejected during smoke test",
+        "totalDays": 2,
+        "createdAt": {},
+        "updatedAt": {},
+        "__v": 0,
+        "approvedAt": {},
+        "approvedBy": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 179,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 223
+          }
+        }
+      }
+    },
+    {
+      "module": "LEAVE",
+      "name": "employee forbidden from list",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "create validation",
+      "ok": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "note": "",
+      "response": {
+        "status": 400,
+        "body": {
+          "success": false,
+          "message": "Invalid payroll data",
+          "errors": [
+            {
+              "origin": "number",
+              "code": "too_small",
+              "minimum": 0,
+              "inclusive": true,
+              "path": [
+                "basicSalary"
+              ],
+              "message": "Too small: expected number to be >=0"
+            },
+            {
+              "code": "custom",
+              "path": [
+                "basicSalary"
+              ],
+              "message": "Basic salary must be provided and non-negative"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "employee forbidden to create",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "create paidTarget",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Payroll generated successfully",
+          "data": {
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "month": 7,
+            "year": 2026,
+            "basicSalary": 5000,
+            "allowances": 200,
+            "bonus": 300,
+            "deductions": 100,
+            "tax": 50,
+            "netSalary": 5350,
+            "paymentStatus": "Pending",
+            "generatedBy": "6a48c8b31d2ce3991c1bfedf",
+            "remarks": "smoke-1783154864601 payroll paid target",
+            "_id": "6a48c8d11d2ce3991c1bffc3",
+            "createdAt": "2026-07-04T08:48:17.392Z",
+            "updatedAt": "2026-07-04T08:48:17.392Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "create pendingTarget",
+      "ok": true,
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "note": "",
+      "response": {
+        "status": 201,
+        "body": {
+          "success": true,
+          "message": "Payroll generated successfully",
+          "data": {
+            "employee": "6a48c8c61d2ce3991c1bff40",
+            "month": 6,
+            "year": 2026,
+            "basicSalary": 7000,
+            "allowances": 500,
+            "bonus": 0,
+            "deductions": 200,
+            "tax": 100,
+            "netSalary": 7200,
+            "paymentStatus": "Pending",
+            "generatedBy": "6a48c8b31d2ce3991c1bfedf",
+            "remarks": "smoke-1783154864601 payroll pending target",
+            "_id": "6a48c8d11d2ce3991c1bffc8",
+            "createdAt": "2026-07-04T08:48:17.801Z",
+            "updatedAt": "2026-07-04T08:48:17.801Z",
+            "__v": 0
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "me",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "My payroll fetched successfully",
+          "data": [
+            {
+              "_id": "6a48c8d11d2ce3991c1bffc3",
+              "employee": "6a48c8c61d2ce3991c1bff44",
+              "month": 7,
+              "year": 2026,
+              "basicSalary": 5000,
+              "allowances": 200,
+              "bonus": 300,
+              "deductions": 100,
+              "tax": 50,
+              "netSalary": 5350,
+              "paymentStatus": "Pending",
+              "generatedBy": "6a48c8b31d2ce3991c1bfedf",
+              "remarks": "smoke-1783154864601 payroll paid target",
+              "createdAt": "2026-07-04T08:48:17.392Z",
+              "updatedAt": "2026-07-04T08:48:17.392Z",
+              "__v": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "list",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll records fetched successfully",
+          "data": {
+            "payrolls": [
+              {
+                "_id": "6a48bb55bca1d723ade8e48d",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e47a",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bb52bca1d723ade8e465",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151442482-4451@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:50:45.680Z",
+                "updatedAt": "2026-07-04T07:50:45.680Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4bb",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a8",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bbabbca1d723ade8e493",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151531884-7480@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:52:14.741Z",
+                "updatedAt": "2026-07-04T07:52:14.741Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc11780c65bf595d1887",
+                "employee": {
+                  "_id": "6a48bc10780c65bf595d1874",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bc0e780c65bf595d185f",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151630293-2325@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:53:53.991Z",
+                "updatedAt": "2026-07-04T07:53:53.991Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c79ce63069786d937ed8",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Paid",
+                "generatedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154567402 payroll paid target",
+                "createdAt": "2026-07-04T08:43:08.951Z",
+                "updatedAt": "2026-07-04T08:43:11.886Z",
+                "__v": 0,
+                "paymentDate": "2026-07-04T08:43:11.885Z"
+              },
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc3",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll paid target",
+                "createdAt": "2026-07-04T08:48:17.392Z",
+                "updatedAt": "2026-07-04T08:48:17.392Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c79de63069786d937edd",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e57",
+                  "firstName": "Mason",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "month": 6,
+                "year": 2026,
+                "basicSalary": 7000,
+                "allowances": 500,
+                "bonus": 0,
+                "deductions": 200,
+                "tax": 100,
+                "netSalary": 7200,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154567402 payroll pending target",
+                "createdAt": "2026-07-04T08:43:09.379Z",
+                "updatedAt": "2026-07-04T08:43:09.379Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc8",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff40",
+                  "firstName": "Mason",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 6,
+                "year": 2026,
+                "basicSalary": 7000,
+                "allowances": 500,
+                "bonus": 0,
+                "deductions": 200,
+                "tax": 100,
+                "netSalary": 7200,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll pending target",
+                "createdAt": "2026-07-04T08:48:17.801Z",
+                "updatedAt": "2026-07-04T08:48:17.801Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 7,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "pagination",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll records fetched successfully",
+          "data": {
+            "payrolls": [
+              {
+                "_id": "6a48bb55bca1d723ade8e48d",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e47a",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bb52bca1d723ade8e465",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151442482-4451@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:50:45.680Z",
+                "updatedAt": "2026-07-04T07:50:45.680Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 7,
+              "page": 1,
+              "limit": 1,
+              "pages": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "search",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll records fetched successfully",
+          "data": {
+            "payrolls": [
+              {
+                "_id": "6a48c79ce63069786d937ed8",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Paid",
+                "generatedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154567402 payroll paid target",
+                "createdAt": "2026-07-04T08:43:08.951Z",
+                "updatedAt": "2026-07-04T08:43:11.886Z",
+                "__v": 0,
+                "paymentDate": "2026-07-04T08:43:11.885Z"
+              },
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc3",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll paid target",
+                "createdAt": "2026-07-04T08:48:17.392Z",
+                "updatedAt": "2026-07-04T08:48:17.392Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 2,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "month and year filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll records fetched successfully",
+          "data": {
+            "payrolls": [
+              {
+                "_id": "6a48bb55bca1d723ade8e48d",
+                "employee": {
+                  "_id": "6a48bb54bca1d723ade8e47a",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bb52bca1d723ade8e465",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151442482-4451@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:50:45.680Z",
+                "updatedAt": "2026-07-04T07:50:45.680Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bbaebca1d723ade8e4bb",
+                "employee": {
+                  "_id": "6a48bbadbca1d723ade8e4a8",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bbabbca1d723ade8e493",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151531884-7480@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:52:14.741Z",
+                "updatedAt": "2026-07-04T07:52:14.741Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48bc11780c65bf595d1887",
+                "employee": {
+                  "_id": "6a48bc10780c65bf595d1874",
+                  "firstName": "Employee",
+                  "lastName": "Dashboard",
+                  "department": "IT"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 1000,
+                "allowances": 0,
+                "bonus": 0,
+                "deductions": 0,
+                "tax": 0,
+                "netSalary": 1000,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48bc0e780c65bf595d185f",
+                  "name": "HR Tester",
+                  "email": "hr-dashboard-test-1783151630293-2325@example.com",
+                  "role": "HR"
+                },
+                "remarks": "",
+                "createdAt": "2026-07-04T07:53:53.991Z",
+                "updatedAt": "2026-07-04T07:53:53.991Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c79ce63069786d937ed8",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Paid",
+                "generatedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154567402 payroll paid target",
+                "createdAt": "2026-07-04T08:43:08.951Z",
+                "updatedAt": "2026-07-04T08:43:11.886Z",
+                "__v": 0,
+                "paymentDate": "2026-07-04T08:43:11.885Z"
+              },
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc3",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll paid target",
+                "createdAt": "2026-07-04T08:48:17.392Z",
+                "updatedAt": "2026-07-04T08:48:17.392Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 5,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "department filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll records fetched successfully",
+          "data": {
+            "payrolls": [
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc3",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll paid target",
+                "createdAt": "2026-07-04T08:48:17.392Z",
+                "updatedAt": "2026-07-04T08:48:17.392Z",
+                "__v": 0
+              },
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc8",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff40",
+                  "firstName": "Mason",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 6,
+                "year": 2026,
+                "basicSalary": 7000,
+                "allowances": 500,
+                "bonus": 0,
+                "deductions": 200,
+                "tax": 100,
+                "netSalary": 7200,
+                "paymentStatus": "Pending",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll pending target",
+                "createdAt": "2026-07-04T08:48:17.801Z",
+                "updatedAt": "2026-07-04T08:48:17.801Z",
+                "__v": 0
+              }
+            ],
+            "pagination": {
+              "total": 2,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "mark paid",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll marked as paid successfully",
+          "data": {
+            "_id": "6a48c8d11d2ce3991c1bffc3",
+            "employee": "6a48c8c61d2ce3991c1bff44",
+            "month": 7,
+            "year": 2026,
+            "basicSalary": 5000,
+            "allowances": 200,
+            "bonus": 300,
+            "deductions": 100,
+            "tax": 50,
+            "netSalary": 5350,
+            "paymentStatus": "Paid",
+            "generatedBy": "6a48c8b31d2ce3991c1bfedf",
+            "remarks": "smoke-1783154864601 payroll paid target",
+            "createdAt": "2026-07-04T08:48:17.392Z",
+            "updatedAt": "2026-07-04T08:48:19.678Z",
+            "__v": 0,
+            "paymentDate": "2026-07-04T08:48:19.678Z"
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "payment status filter",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Payroll records fetched successfully",
+          "data": {
+            "payrolls": [
+              {
+                "_id": "6a48c79ce63069786d937ed8",
+                "employee": {
+                  "_id": "6a48c793e63069786d937e5b",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154567402",
+                  "department": "smoke-1783154567402-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Paid",
+                "generatedBy": {
+                  "_id": "6a48c788e63069786d937df6",
+                  "name": "HR HR",
+                  "email": "smoke-1783154567402-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154567402 payroll paid target",
+                "createdAt": "2026-07-04T08:43:08.951Z",
+                "updatedAt": "2026-07-04T08:43:11.886Z",
+                "__v": 0,
+                "paymentDate": "2026-07-04T08:43:11.885Z"
+              },
+              {
+                "_id": "6a48c8d11d2ce3991c1bffc3",
+                "employee": {
+                  "_id": "6a48c8c61d2ce3991c1bff44",
+                  "firstName": "Eli",
+                  "lastName": "smoke-1783154864601",
+                  "department": "smoke-1783154864601-Operations-Updated"
+                },
+                "month": 7,
+                "year": 2026,
+                "basicSalary": 5000,
+                "allowances": 200,
+                "bonus": 300,
+                "deductions": 100,
+                "tax": 50,
+                "netSalary": 5350,
+                "paymentStatus": "Paid",
+                "generatedBy": {
+                  "_id": "6a48c8b31d2ce3991c1bfedf",
+                  "name": "HR HR",
+                  "email": "smoke-1783154864601-hr-hr@example.com",
+                  "role": "HR"
+                },
+                "remarks": "smoke-1783154864601 payroll paid target",
+                "createdAt": "2026-07-04T08:48:17.392Z",
+                "updatedAt": "2026-07-04T08:48:19.678Z",
+                "__v": 0,
+                "paymentDate": "2026-07-04T08:48:19.678Z"
+              }
+            ],
+            "pagination": {
+              "total": 2,
+              "page": 1,
+              "limit": 20,
+              "pages": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "mongo persistence after payment",
+      "ok": true,
+      "id": "6a48c8d11d2ce3991c1bffc3",
+      "document": {
+        "_id": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 209,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 195
+          }
+        },
+        "employee": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 198,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 255,
+            "11": 68
+          }
+        },
+        "month": 7,
+        "year": 2026,
+        "basicSalary": 5000,
+        "allowances": 200,
+        "bonus": 300,
+        "deductions": 100,
+        "tax": 50,
+        "netSalary": 5350,
+        "paymentStatus": "Paid",
+        "generatedBy": {
+          "buffer": {
+            "0": 106,
+            "1": 72,
+            "2": 200,
+            "3": 179,
+            "4": 29,
+            "5": 44,
+            "6": 227,
+            "7": 153,
+            "8": 28,
+            "9": 27,
+            "10": 254,
+            "11": 223
+          }
+        },
+        "remarks": "smoke-1783154864601 payroll paid target",
+        "createdAt": {},
+        "updatedAt": {},
+        "__v": 0,
+        "paymentDate": {}
+      }
+    },
+    {
+      "module": "PAYROLL",
+      "name": "employee forbidden from list",
+      "ok": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "note": "",
+      "response": {
+        "status": 403,
+        "body": {
+          "success": false,
+          "message": "Access denied"
+        }
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "final stats (admin)",
+      "ok": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "note": "",
+      "response": {
+        "status": 200,
+        "body": {
+          "success": true,
+          "message": "Dashboard stats fetched successfully",
+          "data": {
+            "totalEmployees": 40,
+            "totalDepartments": 4,
+            "activeEmployees": 40,
+            "inactiveEmployees": 0,
+            "attendance": {
+              "presentToday": 8,
+              "absentToday": 0,
+              "lateToday": 0,
+              "leaveToday": 0
+            },
+            "leaves": {
+              "pending": 3,
+              "approved": 2,
+              "rejected": 2
+            },
+            "payroll": {
+              "paid": 2,
+              "pending": 5
+            },
+            "recentEmployees": [
+              {
+                "_id": "6a48c8c61d2ce3991c1bff44",
+                "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+                "firstName": "Eli",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:48:06.365Z"
+              },
+              {
+                "_id": "6a48c8c61d2ce3991c1bff40",
+                "employeeId": "smoke-1783154864601-EMP-MANAGER",
+                "firstName": "Mason",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:48:06.073Z"
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff3c",
+                "employeeId": "smoke-1783154864601-EMP-HR",
+                "firstName": "Harper",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Finance",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:48:05.838Z"
+              },
+              {
+                "_id": "6a48c8c51d2ce3991c1bff38",
+                "employeeId": "smoke-1783154864601-EMP-ADMIN",
+                "firstName": "Ava",
+                "lastName": "smoke-1783154864601",
+                "department": "smoke-1783154864601-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:48:05.521Z"
+              },
+              {
+                "_id": "6a48c793e63069786d937e5b",
+                "employeeId": "smoke-1783154567402-EMP-EMPLOYEE",
+                "firstName": "Eli",
+                "lastName": "smoke-1783154567402",
+                "department": "smoke-1783154567402-Operations-Updated",
+                "status": "Active",
+                "joiningDate": "2026-07-04T08:42:59.234Z"
+              }
+            ],
+            "monthlyAttendance": [
+              {
+                "month": "Feb",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Mar",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Apr",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "May",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Jun",
+                "year": 2026,
+                "present": 0,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              },
+              {
+                "month": "Jul",
+                "year": 2026,
+                "present": 8,
+                "absent": 0,
+                "late": 0,
+                "leave": 0,
+                "halfDay": 0
+              }
+            ],
+            "departmentDistribution": [
+              {
+                "count": 16,
+                "department": "Finance"
+              },
+              {
+                "count": 12,
+                "department": "HR"
+              },
+              {
+                "count": 4,
+                "department": "IT"
+              },
+              {
+                "count": 3,
+                "department": "smoke-1783154567402-Operations-Updated"
+              },
+              {
+                "count": 3,
+                "department": "smoke-1783154864601-Operations-Updated"
+              },
+              {
+                "count": 1,
+                "department": "smoke-1783154567402-Finance"
+              },
+              {
+                "count": 1,
+                "department": "smoke-1783154864601-Finance"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "total employees aggregate",
+      "ok": true,
+      "before": 36,
+      "after": 40
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "total departments aggregate",
+      "ok": true,
+      "before": 2,
+      "after": 4
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "attendance aggregate",
+      "ok": true,
+      "before": 7,
+      "after": 8
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "leave aggregate",
+      "ok": true,
+      "before": {
+        "pending": 3,
+        "approved": 1,
+        "rejected": 1
+      },
+      "after": {
+        "pending": 3,
+        "approved": 2,
+        "rejected": 2
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "payroll aggregate",
+      "ok": true,
+      "before": {
+        "paid": 1,
+        "pending": 4
+      },
+      "after": {
+        "paid": 2,
+        "pending": 5
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "department distribution aggregate",
+      "ok": true,
+      "departmentDistribution": [
+        {
+          "count": 16,
+          "department": "Finance"
+        },
+        {
+          "count": 12,
+          "department": "HR"
+        },
+        {
+          "count": 4,
+          "department": "IT"
+        },
+        {
+          "count": 3,
+          "department": "smoke-1783154567402-Operations-Updated"
+        },
+        {
+          "count": 3,
+          "department": "smoke-1783154864601-Operations-Updated"
+        },
+        {
+          "count": 1,
+          "department": "smoke-1783154567402-Finance"
+        },
+        {
+          "count": 1,
+          "department": "smoke-1783154864601-Finance"
+        }
+      ]
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "monthly attendance aggregate",
+      "ok": true,
+      "before": {
+        "month": "Jul",
+        "year": 2026,
+        "present": 7,
+        "absent": 0,
+        "late": 0,
+        "leave": 0,
+        "halfDay": 0
+      },
+      "after": {
+        "month": "Jul",
+        "year": 2026,
+        "present": 8,
+        "absent": 0,
+        "late": 0,
+        "leave": 0,
+        "halfDay": 0
+      }
+    },
+    {
+      "module": "DASHBOARD",
+      "name": "recent employees contains smoke data",
+      "ok": true,
+      "recentEmployees": [
+        {
+          "_id": "6a48c8c61d2ce3991c1bff44",
+          "employeeId": "smoke-1783154864601-EMP-EMPLOYEE",
+          "firstName": "Eli",
+          "lastName": "smoke-1783154864601",
+          "department": "smoke-1783154864601-Operations-Updated",
+          "status": "Active",
+          "joiningDate": "2026-07-04T08:48:06.365Z"
+        },
+        {
+          "_id": "6a48c8c61d2ce3991c1bff40",
+          "employeeId": "smoke-1783154864601-EMP-MANAGER",
+          "firstName": "Mason",
+          "lastName": "smoke-1783154864601",
+          "department": "smoke-1783154864601-Operations-Updated",
+          "status": "Active",
+          "joiningDate": "2026-07-04T08:48:06.073Z"
+        },
+        {
+          "_id": "6a48c8c51d2ce3991c1bff3c",
+          "employeeId": "smoke-1783154864601-EMP-HR",
+          "firstName": "Harper",
+          "lastName": "smoke-1783154864601",
+          "department": "smoke-1783154864601-Finance",
+          "status": "Active",
+          "joiningDate": "2026-07-04T08:48:05.838Z"
+        },
+        {
+          "_id": "6a48c8c51d2ce3991c1bff38",
+          "employeeId": "smoke-1783154864601-EMP-ADMIN",
+          "firstName": "Ava",
+          "lastName": "smoke-1783154864601",
+          "department": "smoke-1783154864601-Operations-Updated",
+          "status": "Active",
+          "joiningDate": "2026-07-04T08:48:05.521Z"
+        },
+        {
+          "_id": "6a48c793e63069786d937e5b",
+          "employeeId": "smoke-1783154567402-EMP-EMPLOYEE",
+          "firstName": "Eli",
+          "lastName": "smoke-1783154567402",
+          "department": "smoke-1783154567402-Operations-Updated",
+          "status": "Active",
+          "joiningDate": "2026-07-04T08:42:59.234Z"
+        }
+      ]
+    }
+  ]
+}
