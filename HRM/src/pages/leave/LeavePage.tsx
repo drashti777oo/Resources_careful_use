@@ -250,17 +250,18 @@ export function LeavePage() {
         </div>
 
         <div className="overflow-hidden rounded-3xl border bg-slate-50 text-sm text-slate-900 shadow-sm">
-          <div className="grid min-w-full grid-cols-[1.5fr_1fr_0.9fr_0.8fr_1fr_1fr] gap-4 bg-slate-100 px-4 py-3 text-xs uppercase tracking-[0.16em] text-slate-600">
+          <div className="grid min-w-full grid-cols-[1.5fr_1fr_0.9fr_0.8fr_1fr_0.9fr_0.8fr] gap-4 bg-slate-100 px-4 py-3 text-xs uppercase tracking-[0.16em] text-slate-600">
             <span>Requester</span>
             <span>Dates</span>
             <span>Type</span>
             <span>Days</span>
             <span>Reason</span>
-            <span className="text-right">Actions</span>
+            <span>Status</span>
+            <span className="text-right">Requested on</span>
           </div>
           <div className="divide-y bg-white">
             {filteredRequests.map((request) => (
-              <div key={request.id} className="grid min-w-full grid-cols-[1.5fr_1fr_0.9fr_0.8fr_1fr_1fr] gap-4 px-4 py-4 hover:bg-slate-50">
+              <div key={request.id} className="grid min-w-full grid-cols-[1.5fr_1fr_0.9fr_0.8fr_1fr_0.9fr_0.8fr] gap-4 px-4 py-4 hover:bg-slate-50">
                 <div>
                   <p className="font-medium text-slate-900">{request.requester}</p>
                   <p className="mt-1 text-sm text-slate-500">{request.role}</p>
@@ -272,14 +273,19 @@ export function LeavePage() {
                 <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">{request.leaveType}</span>
                 <span className="text-slate-900">{request.daysRequested} days</span>
                 <span className="text-slate-900">{request.reason}</span>
-                <div className="flex items-center justify-end gap-2">
-                  <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${statusClasses[request.status]}`}>
-                    {request.status}
-                  </span>
-                  <button className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 hover:bg-slate-100">
-                    <MoreHorizontal size={16} />
-                  </button>
-                </div>
+                <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ${statusClasses[request.status]}`}>
+                  <span className={`inline-block h-2.5 w-2.5 rounded-full ${
+                    request.status === "Approved"
+                      ? "bg-emerald-500"
+                      : request.status === "Pending"
+                      ? "bg-amber-500"
+                      : request.status === "Rejected"
+                      ? "bg-red-500"
+                      : "bg-slate-400"
+                  }`} />
+                  {request.status}
+                </span>
+                <span className="text-right text-sm text-slate-500">{request.requestedOn}</span>
               </div>
             ))}
           </div>
