@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { CheckCircle2, Clock, Plus } from "lucide-react"
+import { Plus } from "lucide-react"
 
 import { PageHeader } from "@/components/common/PageHeader"
 import type { LeaveRequest } from "@/types"
