@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { Pencil, Plus } from "lucide-react"
+import { Download, Filter, Pencil, Plus, Search } from "lucide-react"
 
 import { EmployeeForm, type EmployeeFormValues } from "@/components/forms/EmployeeForm"
 import { Modal } from "@/components/ui/Modal"
@@ -119,62 +119,89 @@ export function EmployeesPage() {
 
   return (
     <div className="space-y-6 p-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <PageHeader title="Employees" description="Browse your employee directory, filter by status, and manage profiles." />
-        </div>
-        <button
-          type="button"
-          onClick={openNewEmployee}
-          className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-        >
-          <Plus size={16} />
-          Add employee
-        </button>
+      <div className="grid gap-4 xl:grid-cols-5">
+        {[
+          { label: "Total employees", value: "248", detail: "+2.1% this month", accent: "text-violet-600" },
+          { label: "Active employees", value: "230", detail: "+8% this month", accent: "text-sky-600" },
+          { label: "On leave", value: "12", detail: "2 from yesterday", accent: "text-amber-600" },
+          { label: "Attendance rate", value: "94.2%", detail: "+1.8% this month", accent: "text-emerald-600" },
+          { label: "Payroll this month", value: "$124,560", detail: "On track", accent: "text-fuchsia-600" },
+        ].map((stat) => (
+          <div key={stat.label} className="rounded-3xl border bg-background p-5 shadow-sm">
+            <p className="text-sm text-muted-foreground">{stat.label}</p>
+            <div className="mt-4 flex items-end justify-between gap-4">
+              <p className="text-3xl font-semibold text-slate-900">{stat.value}</p>
+              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${stat.accent}`}>{stat.detail}</span>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        <div className="rounded-3xl border bg-background p-4 shadow-sm">
-          <p className="text-sm text-muted-foreground">Search</p>
-          <input
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search by name, email, or role"
-            className="mt-3 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm"
-          />
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <PageHeader title="Employees" description="Manage your workforce with search, filters, and quick actions." />
         </div>
-
-        <div className="rounded-3xl border bg-background p-4 shadow-sm">
-          <label className="mb-2 block text-sm font-medium">Department</label>
-          <select
-            value={departmentFilter}
-            onChange={(event) => setDepartmentFilter(event.target.value)}
-            className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm"
+        <div className="flex flex-wrap gap-3">
+          <button className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm text-slate-700 shadow-sm">
+            <Download size={16} /> Export
+          </button>
+          <button
+            type="button"
+            onClick={openNewEmployee}
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
           >
-            <option value="">All departments</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Finance">Finance</option>
-          </select>
+            <Plus size={16} /> Add employee
+          </button>
         </div>
+      </div>
 
-        <div className="rounded-3xl border bg-background p-4 shadow-sm">
-          <label className="mb-2 block text-sm font-medium">Status</label>
-          <select
-            value={statusFilter}
-            onChange={(event) => setStatusFilter(event.target.value)}
-            className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm"
-          >
-            <option value="">All statuses</option>
-            <option value="Active">Active</option>
-            <option value="On Leave">On Leave</option>
-            <option value="Inactive">Inactive</option>
-          </select>
+      <div className="rounded-3xl border bg-background p-5 shadow-sm">
+        <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr_1fr_0.8fr] xl:grid-cols-[1.8fr_1fr_1fr_0.8fr]">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Search by name, email, or role"
+              className="w-full rounded-3xl border border-input bg-background px-12 py-3 text-sm"
+            />
+          </div>
+          <div>
+            <label className="mb-2 block text-sm font-medium">Department</label>
+            <select
+              value={departmentFilter}
+              onChange={(event) => setDepartmentFilter(event.target.value)}
+              className="w-full rounded-3xl border border-input bg-background px-4 py-3 text-sm"
+            >
+              <option value="">All departments</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Finance">Finance</option>
+            </select>
+          </div>
+          <div>
+            <label className="mb-2 block text-sm font-medium">Status</label>
+            <select
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value)}
+              className="w-full rounded-3xl border border-input bg-background px-4 py-3 text-sm"
+            >
+              <option value="">All statuses</option>
+              <option value="Active">Active</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <div className="flex items-end">
+            <button className="inline-flex items-center gap-2 rounded-3xl border border-input bg-background px-4 py-3 text-sm font-medium text-slate-700">
+              <Filter size={16} /> More filters
+            </button>
+          </div>
         </div>
       </div>
 
       <div className="overflow-hidden rounded-3xl border bg-background shadow-sm">
-        <div className="grid min-w-full gap-0.5 bg-slate-200/70 px-4 py-3 text-xs uppercase tracking-[0.15em] text-slate-500 dark:bg-slate-900/70">
+        <div className="grid min-w-full gap-0.5 bg-slate-200/70 px-4 py-3 text-xs uppercase tracking-[0.15em] text-slate-500">
           <div className="grid grid-cols-[1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.8fr] gap-4 py-2 px-2">
             <span>Employee</span>
             <span>Email</span>
@@ -182,7 +209,7 @@ export function EmployeesPage() {
             <span>Title</span>
             <span>Status</span>
             <span>Type</span>
-            <span className="text-right">Actions</span>
+            <span className="text-right">Joined</span>
           </div>
         </div>
         <div className="divide-y bg-background">
@@ -191,11 +218,14 @@ export function EmployeesPage() {
               key={employee.id}
               type="button"
               onClick={() => openEditEmployee(employee)}
-              className="grid min-w-full grid-cols-[1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.8fr] gap-4 px-4 py-4 text-left transition hover:bg-muted/60"
+              className="grid min-w-full grid-cols-[1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.8fr] gap-4 px-4 py-5 text-left transition hover:bg-muted/60"
             >
-              <div>
-                <p className="font-medium">{employee.fullName}</p>
-                <p className="text-sm text-muted-foreground">{employee.employeeId}</p>
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-2xl bg-primary/10 text-sm font-semibold text-primary-foreground grid place-items-center">{employee.firstName[0]}{employee.lastName[0]}</div>
+                <div>
+                  <p className="font-medium">{employee.fullName}</p>
+                  <p className="text-sm text-muted-foreground">{employee.employeeId}</p>
+                </div>
               </div>
               <div className="truncate text-sm text-muted-foreground">{employee.email}</div>
               <div className="truncate text-sm text-muted-foreground">{employee.department}</div>
@@ -206,16 +236,17 @@ export function EmployeesPage() {
                 </span>
               </div>
               <div className="truncate text-sm text-muted-foreground">{employee.employmentType}</div>
-              <div className="flex justify-end">
-                <span className="inline-flex items-center gap-2 rounded-full border border-input px-3 py-1 text-xs text-muted-foreground">
-                  <Pencil size={14} /> Edit
-                </span>
-              </div>
+              <div className="text-right text-sm text-muted-foreground">{employee.hireDate}</div>
             </button>
           ))}
-          {filteredEmployees.length === 0 ? (
-            <div className="px-4 py-8 text-center text-sm text-muted-foreground">No employees match your filters.</div>
-          ) : null}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200/80 bg-background p-4 shadow-sm">
+        <p className="text-sm text-muted-foreground">Showing 1 to {filteredEmployees.length} of 248 employees</p>
+        <div className="flex items-center gap-3">
+          <button className="rounded-full border border-input px-4 py-2 text-sm">Previous</button>
+          <button className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">Next</button>
         </div>
       </div>
 

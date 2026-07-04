@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { Clock, TrendingUp } from "lucide-react"
+import { ArrowUpRight, Clock, Download, TrendingUp } from "lucide-react"
 
 import { AttendanceChart } from "@/components/charts/AttendanceChart"
 import { PageHeader } from "@/components/common/PageHeader"
@@ -43,66 +43,108 @@ export function AttendancePage() {
 
   return (
     <div className="space-y-6 p-6">
-      <PageHeader title="Attendance" description="Track team check-in status, review weekly trends, and manage attendance logs." />
-
       <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <p className="text-sm text-muted-foreground">Welcome back, Alicia 👋</p>
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight">Attendance</h1>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Track team check-in status, review weekly trends, and manage attendance logs.</p>
+        </div>
+        <div className="flex items-center justify-end gap-3">
+          <button className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm shadow-sm">
+            <Download size={16} /> Export report
+          </button>
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          { label: "Active employees", value: "248", delta: "+18% from last month" },
+          { label: "Present today", value: "228", delta: "+6% from yesterday" },
+          { label: "Late today", value: "14", delta: "+3% from yesterday" },
+          { label: "Attendance rate", value: "94.2%", delta: "+1.8% from last month" },
+        ].map((card) => (
+          <div key={card.label} className="rounded-3xl border bg-background p-5 shadow-sm">
+            <p className="text-sm font-medium text-muted-foreground">{card.label}</p>
+            <h2 className="mt-4 text-3xl font-semibold text-slate-900">{card.value}</h2>
+            <p className="mt-3 text-sm text-muted-foreground">{card.delta}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">
         <div className="rounded-3xl border bg-background p-6 shadow-sm">
-          <div className="flex items-center justify-between">
+          <div className="mb-5 flex items-center justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">Today</p>
-              <h2 className="mt-2 text-2xl font-semibold">{checkedIn ? "Checked in" : "Ready to check in"}</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {checkedIn ? `Checked in at ${checkInTime}` : "Tap below to register your today attendance."}
-              </p>
-              {checkedIn ? (
-                <p className="mt-2 text-sm text-muted-foreground">Check out time: {checkOutTime || "Not checked out yet"}</p>
-              ) : null}
+              <h2 className="text-lg font-semibold">Today’s attendance</h2>
+              <p className="text-sm text-muted-foreground">Tap below to register your today attendance.</p>
             </div>
-            <div className="rounded-3xl bg-primary/5 p-4 text-primary">
-              <Clock size={24} />
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">09:18 AM</span>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200/80 bg-slate-50 p-5">
+              <p className="text-sm text-muted-foreground">Present</p>
+              <h3 className="mt-3 text-3xl font-semibold">228</h3>
+            </div>
+            <div className="rounded-3xl border border-slate-200/80 bg-slate-50 p-5">
+              <p className="text-sm text-muted-foreground">Absent</p>
+              <h3 className="mt-3 text-3xl font-semibold">6</h3>
             </div>
           </div>
-
           <div className="mt-6 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={handleCheckIn}
-              className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground"
+              className="rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white"
             >
-              Check in
+              Check In
             </button>
             <button
               type="button"
               onClick={handleCheckOut}
-              className="rounded-full border px-5 py-2 text-sm font-semibold"
+              className="rounded-full border border-input bg-background px-5 py-3 text-sm font-semibold"
             >
-              Check out
+              Check Out
             </button>
+          </div>
+          <div className="mt-4 rounded-3xl bg-slate-100 p-4 text-sm text-muted-foreground">
+            <p className="font-semibold text-slate-900">Last checked in:</p>
+            <p>Yesterday at 09:05 AM</p>
           </div>
         </div>
 
         <div className="space-y-4">
           <div className="rounded-3xl border bg-background p-6 shadow-sm">
-            <p className="text-sm text-muted-foreground">Weekly attendance</p>
-            <div className="mt-3 flex items-center gap-2 text-3xl font-semibold">94.2% <span className="text-sm font-normal text-muted-foreground">on time</span></div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-3xl bg-muted/50 p-4">
-                <p className="text-sm text-muted-foreground">Present today</p>
-                <p className="mt-2 text-xl font-semibold">28</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-semibold">Weekly attendance overview</h2>
+                <p className="text-sm text-muted-foreground">See week-to-date attendance trends.</p>
               </div>
-              <div className="rounded-3xl bg-muted/50 p-4">
-                <p className="text-sm text-muted-foreground">Pending approvals</p>
-                <p className="mt-2 text-xl font-semibold">4</p>
-              </div>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">This week</span>
             </div>
+            <AttendanceChart />
           </div>
-
           <div className="rounded-3xl border bg-background p-6 shadow-sm">
-            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-              <TrendingUp size={16} /> Weekly trend
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-semibold">Upcoming events</h2>
+              </div>
+              <button className="inline-flex items-center gap-2 rounded-full border border-input px-3 py-2 text-sm">
+                <ArrowUpRight size={16} /> View all
+              </button>
             </div>
-            <div className="mt-4">
-              <AttendanceChart />
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <div className="rounded-3xl bg-slate-50 p-4">
+                <p className="font-semibold text-slate-900">Payroll review meeting</p>
+                <p>Today, 2:00 PM</p>
+              </div>
+              <div className="rounded-3xl bg-slate-50 p-4">
+                <p className="font-semibold text-slate-900">Interview panel</p>
+                <p>Today, 4:30 PM</p>
+              </div>
+              <div className="rounded-3xl bg-slate-50 p-4">
+                <p className="font-semibold text-slate-900">Team building event</p>
+                <p>May 20, 10:00 AM</p>
+              </div>
             </div>
           </div>
         </div>
@@ -118,7 +160,7 @@ export function AttendancePage() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search records"
-            className="w-full max-w-sm rounded-full border border-input bg-background px-4 py-2 text-sm"
+            className="w-full max-w-sm rounded-full border border-input bg-background px-4 py-3 text-sm"
           />
         </div>
 
