@@ -205,21 +205,44 @@ export function LeavePage() {
           </button>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm text-slate-500">Requests</p>
-            <p className="mt-3 text-3xl font-semibold text-slate-900">{summaryRequests}</p>
-            <p className="mt-2 text-sm text-slate-500">Submitted by you</p>
-          </div>
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm text-slate-500">Pending approvals</p>
-            <p className="mt-3 text-3xl font-semibold text-slate-900">{pendingCount}</p>
-            <p className="mt-2 text-sm text-slate-500">Awaiting approval</p>
-          </div>
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm text-slate-500">Upcoming leaves</p>
-            <p className="mt-3 text-3xl font-semibold text-slate-900">{approvedCount}</p>
-            <p className="mt-2 text-sm text-slate-500">Scheduled</p>
+        <div className="mt-6 rounded-3xl bg-slate-50 p-5">
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-violet-50 text-violet-700">
+                  <FileText size={18} />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-500">Requests</p>
+                  <p className="mt-3 text-3xl font-semibold text-slate-900">{summaryRequests}</p>
+                  <p className="mt-2 text-sm text-slate-500">Submitted by you</p>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-amber-50 text-amber-700">
+                  <Clock size={18} />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-500">Pending approvals</p>
+                  <p className="mt-3 text-3xl font-semibold text-slate-900">{pendingCount}</p>
+                  <p className="mt-2 text-sm text-slate-500">Awaiting approval</p>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-sky-50 text-sky-700">
+                  <CalendarDays size={18} />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-500">Upcoming leaves</p>
+                  <p className="mt-3 text-3xl font-semibold text-slate-900">{approvedCount}</p>
+                  <p className="mt-2 text-sm text-slate-500">Scheduled</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
