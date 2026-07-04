@@ -54,6 +54,9 @@ export function AttendancePage() {
               <p className="mt-2 text-sm text-muted-foreground">
                 {checkedIn ? `Checked in at ${checkInTime}` : "Tap below to register your today attendance."}
               </p>
+              {checkedIn ? (
+                <p className="mt-2 text-sm text-muted-foreground">Check out time: {checkOutTime || "Not checked out yet"}</p>
+              ) : null}
             </div>
             <div className="rounded-3xl bg-primary/5 p-4 text-primary">
               <Clock size={24} />
