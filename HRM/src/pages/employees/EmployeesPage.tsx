@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react"
-import { CheckCircle, Calendar, Download, DollarSign, Filter, MoreHorizontal, Plus, Search, UserCheck, Users } from "lucide-react"
+import { Calendar, ChevronDown, CheckCircle, Download, DollarSign, Filter, MoreHorizontal, Plus, Search, TrendingUp, UserCheck, Users } from "lucide-react"
 
 import { EmployeeForm, type EmployeeFormValues } from "@/components/forms/EmployeeForm"
 import { Modal } from "@/components/ui/Modal"
+import { PageHeader } from "@/components/common/PageHeader"
 import type { Employee } from "@/types"
 
 const initialEmployees: Employee[] = [
@@ -179,17 +180,65 @@ export function EmployeesPage() {
     <div className="space-y-6 p-6">
       <div className="grid gap-4 xl:grid-cols-5">
         {[
-          { label: "Total employees", value: "248", detail: "+2.1% this month", accent: "text-violet-600" },
-          { label: "Active employees", value: "230", detail: "+8% this month", accent: "text-sky-600" },
-          { label: "On leave", value: "12", detail: "2 from yesterday", accent: "text-amber-600" },
-          { label: "Attendance rate", value: "94.2%", detail: "+1.8% this month", accent: "text-emerald-600" },
-          { label: "Payroll this month", value: "$124,560", detail: "On track", accent: "text-fuchsia-600" },
+          {
+            label: "Total employees",
+            value: "248",
+            detail: "+12% this month",
+            accent: "text-violet-600",
+            icon: Users,
+            iconBg: "bg-violet-50 text-violet-700",
+            chartBg: "bg-violet-100",
+          },
+          {
+            label: "Active employees",
+            value: "230",
+            detail: "+8% this month",
+            accent: "text-emerald-600",
+            icon: UserCheck,
+            iconBg: "bg-emerald-50 text-emerald-700",
+            chartBg: "bg-emerald-100",
+          },
+          {
+            label: "On leave",
+            value: "12",
+            detail: "-2 from last month",
+            accent: "text-amber-600",
+            icon: Calendar,
+            iconBg: "bg-amber-50 text-amber-700",
+            chartBg: "bg-amber-100",
+          },
+          {
+            label: "Attendance rate",
+            value: "94.2%",
+            detail: "+1.8% this month",
+            accent: "text-sky-600",
+            icon: CheckCircle,
+            iconBg: "bg-sky-50 text-sky-700",
+            chartBg: "bg-sky-100",
+          },
+          {
+            label: "Payroll this month",
+            value: "$124,560",
+            detail: "On track",
+            accent: "text-fuchsia-600",
+            icon: DollarSign,
+            iconBg: "bg-fuchsia-50 text-fuchsia-700",
+            chartBg: "bg-fuchsia-100",
+          },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-3xl border bg-background p-5 shadow-sm">
-            <p className="text-sm text-muted-foreground">{stat.label}</p>
-            <div className="mt-4 flex items-end justify-between gap-4">
-              <p className="text-3xl font-semibold text-slate-900">{stat.value}</p>
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${stat.accent}`}>{stat.detail}</span>
+          <div key={stat.label} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-lg">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">{stat.label}</p>
+                <p className="mt-4 text-3xl font-semibold text-slate-950">{stat.value}</p>
+              </div>
+              <div className={`${stat.iconBg} grid h-12 w-12 place-items-center rounded-2xl`}>
+                <stat.icon size={18} />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <span className={`text-sm font-semibold ${stat.accent}`}>{stat.detail}</span>
+              <div className={`${stat.chartBg} h-10 w-full rounded-3xl`} />
             </div>
           </div>
         ))}

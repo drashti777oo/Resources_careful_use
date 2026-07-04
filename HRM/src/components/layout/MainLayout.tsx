@@ -8,6 +8,8 @@ import {
   LayoutDashboard,
   LogOut,
   Moon,
+  Search,
+  Settings,
   ShieldCheck,
   Sun,
   Users,
@@ -31,17 +33,17 @@ export function MainLayout() {
 
   return (
     <div className={`flex min-h-screen ${darkMode ? "dark bg-zinc-950 text-zinc-100" : "bg-slate-50 text-slate-900"}`}>
-      <aside className={`${collapsed ? "w-20" : "w-72"} hidden flex-col justify-between border-r bg-background/95 p-4 shadow-sm lg:flex`}>
+      <aside className={`${collapsed ? "w-20" : "w-72"} hidden flex-col justify-between border-r border-slate-200 bg-white p-4 shadow-sm lg:flex`}>
         <div>
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">HRMS</p>
-              <h2 className="mt-1 text-lg font-semibold">People Ops</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">HRMS</p>
+              <h2 className="mt-1 text-lg font-semibold text-slate-950">People Operations</h2>
             </div>
             <button
               type="button"
               onClick={() => setCollapsed((value) => !value)}
-              className="rounded-full border p-2 text-muted-foreground transition hover:bg-accent"
+              className="rounded-full border border-slate-200 p-2 text-slate-600 transition hover:bg-slate-100"
             >
               {collapsed ? <ChevronsRight size={16} /> : <ChevronsLeft size={16} />}
             </button>
@@ -53,10 +55,10 @@ export function MainLayout() {
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition ${
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                      ? "bg-violet-100 text-violet-700 shadow-sm"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                   }`
                 }
               >
@@ -67,48 +69,51 @@ export function MainLayout() {
           </nav>
         </div>
 
-        <button
-          type="button"
-          onClick={logout}
-          className="flex items-center gap-2 rounded-lg border px-3 py-2 text-sm text-muted-foreground transition hover:bg-accent hover:text-foreground"
-        >
-          <LogOut size={16} />
-          {!collapsed ? <span>Logout</span> : null}
-        </button>
+        <div className="space-y-4">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+            <p className="text-sm font-semibold text-slate-950">People Ops Inc.</p>
+            <p className="mt-1 text-xs text-slate-500">Enterprise Plan</p>
+          </div>
+
+          <div className="flex items-center gap-3 rounded-3xl border border-slate-200 bg-white px-3 py-3 shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-violet-600 text-xs font-semibold text-white">
+              AD
+            </div>
+            {!collapsed ? (
+              <div>
+                <p className="text-sm font-semibold text-slate-950">Alicia Davis</p>
+                <p className="text-xs text-slate-500">HR Manager</p>
+              </div>
+            ) : null}
+          </div>
+        </div>
       </aside>
 
       <div className="flex-1">
-        <header className="border-b bg-background/90 px-4 py-4 backdrop-blur sm:px-6">
+        <header className="border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <p className="text-sm text-muted-foreground">Welcome back</p>
-              <h1 className="text-lg font-semibold">Human Resource Management</h1>
+            <div className="relative flex-1 min-w-0">
+              <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <input
+                type="search"
+                placeholder="Search employees, departments..."
+                className="w-full rounded-full border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-900 shadow-sm focus:border-violet-300 focus:outline-none"
+              />
             </div>
 
             <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setDarkMode((value) => !value)}
-                className="rounded-full border p-2 text-muted-foreground transition hover:bg-accent"
-              >
-                {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+              <button className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-100">
+                <Settings size={18} />
               </button>
-
-              <button
-                type="button"
-                className="relative rounded-full border p-2 text-muted-foreground transition hover:bg-accent"
-              >
-                <Bell size={16} />
-                <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-red-500" />
+              <button className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-100">
+                <Bell size={18} />
+                <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white" />
               </button>
-
-              <div className="flex items-center gap-3 rounded-full border bg-muted/60 px-3 py-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                  AD
-                </div>
-                <div className="hidden text-left sm:block">
-                  <p className="text-sm font-medium">Alicia Davis</p>
-                  <p className="text-xs text-muted-foreground">HR Manager</p>
+              <div className="hidden rounded-full border border-slate-200 bg-white px-3 py-2 shadow-sm sm:flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-violet-600 text-xs font-semibold text-white">AD</div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-slate-950">Alicia Davis</p>
+                  <p className="text-xs text-slate-500">HR Manager</p>
                 </div>
               </div>
             </div>
