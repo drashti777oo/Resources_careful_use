@@ -86,7 +86,7 @@ export function LoginPage() {
       <div className="hidden h-full items-center justify-center lg:flex">
         <div className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] border bg-background shadow-2xl">
           <img src={heroImg} alt="HRMS hero illustration" className="h-full w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 to-transparent p-8 text-white">
+          <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-slate-950/80 to-transparent p-8 text-white">
             <p className="text-sm uppercase tracking-[0.3em] text-slate-200">HR dashboard</p>
             <h2 className="mt-3 text-3xl font-semibold">Manage people and processes in one place.</h2>
             <ul className="mt-5 space-y-2 text-sm text-slate-200/90">
