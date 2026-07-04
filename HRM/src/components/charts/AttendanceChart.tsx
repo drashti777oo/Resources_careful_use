@@ -1,31 +1,27 @@
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 const data = [
-  { name: "Mon", attendance: 92 },
-  { name: "Tue", attendance: 88 },
-  { name: "Wed", attendance: 95 },
-  { name: "Thu", attendance: 90 },
-  { name: "Fri", attendance: 97 },
+  { name: "Mon", present: 86 },
+  { name: "Tue", present: 88 },
+  { name: "Wed", present: 92 },
+  { name: "Thu", present: 89 },
+  { name: "Fri", present: 94 },
 ]
 
-export function AttendanceChart() {
+interface AttendanceChartProps {
+  height?: number
+}
+
+export function AttendanceChart({ height = 300 }: AttendanceChartProps) {
   return (
-    <div className="h-64 w-full">
+    <div className="w-full" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="attendance" fill="#2563eb" radius={[6, 6, 0, 0]} />
+        <BarChart data={data} margin={{ top: 10, right: 0, left: -10, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+          <XAxis dataKey="name" stroke="var(--muted-foreground)" tickLine={false} axisLine={false} />
+          <YAxis stroke="var(--muted-foreground)" tickLine={false} axisLine={false} />
+          <Tooltip cursor={{ fill: "rgba(148,163,184,0.08)" }} />
+          <Bar dataKey="present" fill="#2563eb" radius={[12, 12, 0, 0]} barSize={28} />
         </BarChart>
       </ResponsiveContainer>
     </div>
