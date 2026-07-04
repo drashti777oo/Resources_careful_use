@@ -64,7 +64,7 @@ export const getMyPayroll = async (req, res) => {
 
 export const getAllPayroll = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -148,7 +148,7 @@ export const getPayrollById = async (req, res) => {
       return errorResponse(res, 404, 'Payroll not found');
     }
 
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       const employee = await Employee.findOne({ user: req.user.id });
       if (!employee || employee._id.toString() !== payroll.employee._id.toString()) {
         return errorResponse(res, 403, 'Access denied');
@@ -163,7 +163,7 @@ export const getPayrollById = async (req, res) => {
 
 export const updatePayroll = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -214,7 +214,7 @@ export const updatePayroll = async (req, res) => {
 
 export const markPayrollPaid = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -236,7 +236,7 @@ export const markPayrollPaid = async (req, res) => {
 
 export const deletePayroll = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 

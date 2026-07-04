@@ -32,15 +32,17 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('combined'));
 }
 
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: 'Too many requests from this IP, please try again later.',
-  })
-);
+if (process.env.NODE_ENV === 'production') {
+  app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000,
+      max: 100,
+      standardHeaders: true,
+      legacyHeaders: false,
+      message: 'Too many requests from this IP, please try again later.',
+    })
+  );
+}
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'HRMS backend is running' });

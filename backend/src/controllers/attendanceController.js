@@ -93,7 +93,7 @@ export const checkOut = async (req, res) => {
 
 export const markAttendance = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -172,7 +172,7 @@ export const getMyAttendance = async (req, res) => {
 
 export const getAllAttendance = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -234,7 +234,7 @@ export const getAllAttendance = async (req, res) => {
 export const getEmployeeAttendance = async (req, res) => {
   try {
     const { id } = req.params;
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -251,7 +251,7 @@ export const getEmployeeAttendance = async (req, res) => {
 
 export const updateAttendance = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -283,7 +283,7 @@ export const updateAttendance = async (req, res) => {
 
 export const deleteAttendance = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 

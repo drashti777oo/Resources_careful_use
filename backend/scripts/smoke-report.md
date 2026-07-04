@@ -1,9 +1,9 @@
 # HRMS API Smoke Test Report
 
-- Run ID: `smoke-1783154864601`
+- Run ID: `smoke-1783163253858`
 - Base URL: `http://localhost:5000`
-- Total checks: `99`
-- Passed: `99`
+- Total checks: `109`
+- Passed: `109`
 - Failed: `0`
 
 ## Verification Coverage

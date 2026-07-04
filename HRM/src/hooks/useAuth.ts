@@ -1,11 +1,24 @@
 import { useAppStore } from "@/store"
 
+interface AuthUser {
+  id: string
+  name: string
+  email: string
+  role: string
+  profilePicture?: string
+  isVerified?: boolean
+}
+
 export function useAuth() {
-  const { isAuthenticated, setAuthenticated } = useAppStore()
+  const { isAuthenticated, isLoading, token, user, setAuth, clearAuth, setLoading } = useAppStore()
 
   return {
     isAuthenticated,
-    login: () => setAuthenticated(true),
-    logout: () => setAuthenticated(false),
+    isLoading,
+    token,
+    user,
+    login: (payload: { token: string; user: AuthUser }) => setAuth(payload),
+    logout: () => clearAuth(),
+    setLoading,
   }
 }

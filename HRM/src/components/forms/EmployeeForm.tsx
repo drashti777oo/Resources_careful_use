@@ -25,9 +25,10 @@ interface EmployeeFormProps {
   defaultValues?: EmployeeFormValues
   onSubmit: (values: EmployeeFormValues) => void
   submitLabel?: string
+  isEmployee?: boolean
 }
 
-export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save employee" }: EmployeeFormProps) {
+export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save employee", isEmployee = false }: EmployeeFormProps) {
   const {
     register,
     handleSubmit,
@@ -51,7 +52,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Employee ID</label>
           <input
             {...register("employeeId")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.employeeId ? <p className="mt-1 text-xs text-destructive">{errors.employeeId.message}</p> : null}
         </div>
@@ -60,7 +62,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">First name</label>
           <input
             {...register("firstName")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.firstName ? <p className="mt-1 text-xs text-destructive">{errors.firstName.message}</p> : null}
         </div>
@@ -69,7 +72,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Last name</label>
           <input
             {...register("lastName")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.lastName ? <p className="mt-1 text-xs text-destructive">{errors.lastName.message}</p> : null}
         </div>
@@ -78,7 +82,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Email</label>
           <input
             {...register("email")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.email ? <p className="mt-1 text-xs text-destructive">{errors.email.message}</p> : null}
         </div>
@@ -96,7 +101,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Department</label>
           <input
             {...register("department")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.department ? <p className="mt-1 text-xs text-destructive">{errors.department.message}</p> : null}
         </div>
@@ -105,7 +111,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Job title</label>
           <input
             {...register("jobTitle")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.jobTitle ? <p className="mt-1 text-xs text-destructive">{errors.jobTitle.message}</p> : null}
         </div>
@@ -115,7 +122,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <input
             {...register("hireDate")}
             type="date"
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.hireDate ? <p className="mt-1 text-xs text-destructive">{errors.hireDate.message}</p> : null}
         </div>
@@ -124,7 +132,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Employment type</label>
           <select
             {...register("employmentType")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           >
             <option value="">Select type</option>
             <option value="Full-time">Full-time</option>
@@ -138,7 +147,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Status</label>
           <select
             {...register("status")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           >
             <option value="">Select status</option>
             <option value="Active">Active</option>
@@ -152,7 +162,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Manager</label>
           <input
             {...register("manager")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.manager ? <p className="mt-1 text-xs text-destructive">{errors.manager.message}</p> : null}
         </div>
@@ -161,7 +172,8 @@ export function EmployeeForm({ defaultValues, onSubmit, submitLabel = "Save empl
           <label className="mb-1 block text-sm font-medium">Salary</label>
           <input
             {...register("salary")}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            disabled={isEmployee}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm disabled:opacity-60"
           />
           {errors.salary ? <p className="mt-1 text-xs text-destructive">{errors.salary.message}</p> : null}
         </div>

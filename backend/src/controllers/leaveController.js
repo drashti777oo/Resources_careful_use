@@ -56,7 +56,7 @@ export const getMyLeaves = async (req, res) => {
 
 export const getAllLeaves = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -126,7 +126,7 @@ export const getLeaveById = async (req, res) => {
       return errorResponse(res, 404, 'Leave not found');
     }
 
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       const employee = await Employee.findOne({ user: req.user.id });
       if (!employee || employee._id.toString() !== leave.employee._id.toString()) {
         return errorResponse(res, 403, 'Access denied');
@@ -141,7 +141,7 @@ export const getLeaveById = async (req, res) => {
 
 export const approveLeave = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -164,7 +164,7 @@ export const approveLeave = async (req, res) => {
 
 export const rejectLeave = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 
@@ -212,7 +212,7 @@ export const cancelLeave = async (req, res) => {
 
 export const deleteLeave = async (req, res) => {
   try {
-    if (!['Admin', 'HR'].includes(req.user.role)) {
+    if (!['ADMIN', 'HR', 'SUPER_ADMIN'].includes(req.user.role?.toUpperCase())) {
       return errorResponse(res, 403, 'Access denied');
     }
 

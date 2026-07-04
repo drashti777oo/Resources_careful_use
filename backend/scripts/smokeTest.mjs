@@ -7,6 +7,7 @@ import Employee from '../src/models/Employee.js';
 import Attendance from '../src/models/Attendance.js';
 import Leave from '../src/models/Leave.js';
 import Payroll from '../src/models/Payroll.js';
+import User from '../src/models/User.js';
 
 dotenv.config();
 
@@ -197,6 +198,24 @@ const run = async () => {
 
   for (const key of Object.keys(created.users)) {
     const user = created.users[key];
+
+    // 1. Verify login is blocked before verification
+    const blockedLogin = await request('POST', '/api/auth/login', {
+      body: { email: user.email, password: user.password },
+    });
+    expectStatus('AUTH', `login blocked before verification ${key}`, blockedLogin, 403);
+
+    // 2. Fetch the verification OTP from MongoDB
+    const dbUser = await User.findById(user.id);
+    const otp = dbUser.verificationOtp;
+
+    // 3. Verify the email using the OTP
+    const verifyEmailRes = await request('POST', '/api/auth/verify-email', {
+      body: { email: user.email, otp },
+    });
+    expectStatus('AUTH', `verify email ${key}`, verifyEmailRes, 200);
+
+    // 4. Perform successful login after verification
     const response = await request('POST', '/api/auth/login', {
       body: { email: user.email, password: user.password },
     });

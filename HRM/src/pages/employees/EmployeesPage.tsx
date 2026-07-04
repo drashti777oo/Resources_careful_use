@@ -1,115 +1,13 @@
-import { useMemo, useState } from "react"
-import { Calendar, ChevronDown, CheckCircle, Download, DollarSign, Filter, MoreHorizontal, Plus, Search, TrendingUp, UserCheck, Users } from "lucide-react"
+import { useMemo, useState, useEffect } from "react"
+import { useLocation } from "react-router-dom"
+import { ChevronDown, Download, Filter, MoreHorizontal, Plus, Search } from "lucide-react"
 
 import { EmployeeForm, type EmployeeFormValues } from "@/components/forms/EmployeeForm"
 import { Modal } from "@/components/ui/Modal"
 import { PageHeader } from "@/components/common/PageHeader"
 import type { Employee } from "@/types"
-
-const initialEmployees: Employee[] = [
-  {
-    id: "1",
-    employeeId: "EMP-001",
-    firstName: "Alicia",
-    lastName: "Davis",
-    fullName: "Alicia Davis",
-    email: "alicia.davis@example.com",
-    phone: "+1 555 348 210",
-    department: "Human Resources",
-    jobTitle: "HR Manager",
-    hireDate: "Jan 15, 2023",
-    employmentType: "Full-time",
-    status: "Active",
-    manager: "Robert King",
-    salary: "$84,500",
-    address: "123 Main Street, San Francisco, CA",
-  },
-  {
-    id: "2",
-    employeeId: "EMP-002",
-    firstName: "Jason",
-    lastName: "Mills",
-    fullName: "Jason Mills",
-    email: "jason.mills@example.com",
-    phone: "+1 555 198 764",
-    department: "Engineering",
-    jobTitle: "Frontend Engineer",
-    hireDate: "Mar 10, 2023",
-    employmentType: "Full-time",
-    status: "On Leave",
-    manager: "Laura Scott",
-    salary: "$98,300",
-    address: "273 River Road, Austin, TX",
-  },
-  {
-    id: "3",
-    employeeId: "EMP-003",
-    firstName: "Sarah",
-    lastName: "Johnson",
-    fullName: "Sarah Johnson",
-    email: "sarah.johnson@example.com",
-    phone: "+1 555 332 991",
-    department: "Marketing",
-    jobTitle: "Marketing Specialist",
-    hireDate: "Feb 20, 2023",
-    employmentType: "Full-time",
-    status: "Active",
-    manager: "Alicia Davis",
-    salary: "$72,100",
-    address: "44 Meridian Lane, Denver, CO",
-  },
-  {
-    id: "4",
-    employeeId: "EMP-004",
-    firstName: "Michael",
-    lastName: "Brown",
-    fullName: "Michael Brown",
-    email: "michael.brown@example.com",
-    phone: "+1 555 804 773",
-    department: "Engineering",
-    jobTitle: "Backend Developer",
-    hireDate: "Apr 05, 2023",
-    employmentType: "Full-time",
-    status: "Active",
-    manager: "Laura Scott",
-    salary: "$91,700",
-    address: "732 Oak Street, Portland, OR",
-  },
-  {
-    id: "5",
-    employeeId: "EMP-005",
-    firstName: "Emily",
-    lastName: "Davis",
-    fullName: "Emily Davis",
-    email: "emily.davis@example.com",
-    phone: "+1 555 501 208",
-    department: "Finance",
-    jobTitle: "Finance Analyst",
-    hireDate: "May 12, 2023",
-    employmentType: "Full-time",
-    status: "Active",
-    manager: "Robert King",
-    salary: "$76,400",
-    address: "19 North Ave, Boston, MA",
-  },
-  {
-    id: "6",
-    employeeId: "EMP-006",
-    firstName: "David",
-    lastName: "Wilson",
-    fullName: "David Wilson",
-    email: "david.wilson@example.com",
-    phone: "+1 555 917 334",
-    department: "Sales",
-    jobTitle: "Sales Executive",
-    hireDate: "Jun 18, 2023",
-    employmentType: "Full-time",
-    status: "Inactive",
-    manager: "Alicia Davis",
-    salary: "$69,800",
-    address: "502 Lakeside Way, Miami, FL",
-  },
-]
+import { employeeApi } from "@/services/api"
+import { useAuth } from "@/hooks/useAuth"
 
 const statusClasses: Record<string, string> = {
   Active: "bg-emerald-500/10 text-emerald-700",
@@ -126,12 +24,44 @@ const departmentClasses: Record<string, string> = {
 }
 
 export function EmployeesPage() {
-  const [employees, setEmployees] = useState<Employee[]>(initialEmployees)
+  const { user } = useAuth()
+  const location = useLocation()
+  const [employees, setEmployees] = useState<Employee[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
   const [search, setSearch] = useState("")
-  const [departmentFilter, setDepartmentFilter] = useState("")
-  const [statusFilter, setStatusFilter] = useState("")
+  const [departmentFilter] = useState("")
+  const [statusFilter] = useState("")
   const [modalOpen, setModalOpen] = useState(false)
   const [activeEmployee, setActiveEmployee] = useState<Employee | null>(null)
+
+  useEffect(() => {
+    if (location.state && (location.state as any).openAdd) {
+      openNewEmployee()
+      window.history.replaceState({}, document.title)
+    }
+  }, [location])
+
+  const fetchEmployees = async () => {
+    try {
+      setLoading(true)
+      const data = await employeeApi.list()
+      const mapped = (data.employees || []).map((emp: any) => ({
+        ...emp,
+        id: emp.id || emp._id,
+        fullName: emp.fullName || `${emp.firstName} ${emp.lastName}`,
+      }))
+      setEmployees(mapped)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load employees")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchEmployees()
+  }, [])
 
   const filteredEmployees = useMemo(
     () =>
@@ -154,27 +84,33 @@ export function EmployeesPage() {
   }
 
   const openEditEmployee = (employee: Employee) => {
-    setActiveEmployee(employee)
-    setModalOpen(true)
-  }
-
-  const handleSaveEmployee = (data: EmployeeFormValues) => {
-    const updatedEmployee: Employee = {
-      id: activeEmployee?.id ?? String(Date.now()),
-      fullName: `${data.firstName} ${data.lastName}`,
-      ...data,
+    const role = user?.role?.toUpperCase()
+    if (role === "ADMIN" || role === "HR" || role === "SUPER_ADMIN" || role === "EMPLOYEE") {
+      setActiveEmployee(employee)
+      setModalOpen(true)
     }
-
-    setEmployees((current) => {
-      if (activeEmployee) {
-        return current.map((item) => (item.id === activeEmployee.id ? updatedEmployee : item))
-      }
-      return [updatedEmployee, ...current]
-    })
-
-    setModalOpen(false)
-    setActiveEmployee(null)
   }
+
+  const handleSaveEmployee = async (data: EmployeeFormValues) => {
+    try {
+      if (activeEmployee) {
+        const id = activeEmployee.id || (activeEmployee as any)._id
+        await employeeApi.update(id, data)
+      } else {
+        await employeeApi.create(data)
+      }
+      await fetchEmployees()
+      setModalOpen(false)
+      setActiveEmployee(null)
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to save employee")
+    }
+  }
+
+  const isManagement = useMemo(() => {
+    const role = user?.role?.toUpperCase()
+    return role === "ADMIN" || role === "HR" || role === "SUPER_ADMIN"
+  }, [user])
 
   return (
     <div className="space-y-6 p-6">
@@ -182,18 +118,20 @@ export function EmployeesPage() {
         <div>
           <PageHeader title="Employees" description="Manage your workforce with search, filters, and quick actions." />
         </div>
-        <div className="flex flex-wrap gap-3">
-          <button className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm text-slate-700 shadow-sm">
-            <Download size={16} /> Export
-          </button>
-          <button
-            type="button"
-            onClick={openNewEmployee}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
-          >
-            <Plus size={16} /> Add employee
-          </button>
-        </div>
+        {isManagement && (
+          <div className="flex flex-wrap gap-3">
+            <button className="inline-flex items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm text-slate-700 shadow-sm">
+              <Download size={16} /> Export
+            </button>
+            <button
+              type="button"
+              onClick={openNewEmployee}
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
+            >
+              <Plus size={16} /> Add employee
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -237,71 +175,89 @@ export function EmployeesPage() {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div className="grid min-w-full gap-0.5 bg-slate-100 px-4 py-3 text-xs uppercase tracking-[0.18em] text-slate-500">
-          <div className="grid grid-cols-[0.5fr_1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.5fr] gap-4 py-3 px-2">
-            <span className="text-left"> </span>
-            <span>Employee</span>
-            <span>Email</span>
-            <span>Department</span>
-            <span>Title</span>
-            <span>Status</span>
-            <span>Type</span>
-            <span className="text-right">Joined</span>
+      {loading ? (
+        <div className="flex min-h-64 items-center justify-center rounded-3xl border border-slate-200 bg-white">
+          <p className="text-sm text-slate-500">Loading employees...</p>
+        </div>
+      ) : error ? (
+        <div className="flex min-h-64 items-center justify-center rounded-3xl border border-slate-200 bg-white">
+          <p className="text-sm text-destructive">{error}</p>
+        </div>
+      ) : (
+        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div className="grid min-w-full gap-0.5 bg-slate-100 px-4 py-3 text-xs uppercase tracking-[0.18em] text-slate-500">
+            <div className="grid grid-cols-[0.5fr_1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.5fr] gap-4 py-3 px-2">
+              <span className="text-left"> </span>
+              <span>Employee</span>
+              <span>Email</span>
+              <span>Department</span>
+              <span>Title</span>
+              <span>Status</span>
+              <span>Type</span>
+              <span className="text-right">Joined</span>
+            </div>
+          </div>
+          <div className="divide-y bg-slate-50">
+            {filteredEmployees.map((employee) => (
+              <button
+                key={employee.id}
+                type="button"
+                onClick={() => openEditEmployee(employee)}
+                className="grid min-w-full grid-cols-[0.5fr_1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.5fr] gap-4 px-4 py-5 text-left transition hover:bg-slate-100"
+              >
+                <span className="flex h-5 w-5 items-center justify-center rounded-md border border-slate-300 bg-white text-sm text-slate-500"> </span>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-2xl bg-violet-100 text-violet-700 grid place-items-center text-sm font-semibold">
+                    {employee.firstName?.[0] || ""}{employee.lastName?.[0] || ""}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-950">{employee.fullName}</p>
+                    <p className="text-sm text-slate-500">{employee.employeeId}</p>
+                  </div>
+                </div>
+                <div className="truncate text-sm text-slate-500">{employee.email}</div>
+                <div className="truncate text-sm text-slate-500">
+                  <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${departmentClasses[employee.department] ?? "bg-slate-100 text-slate-700"}`}>
+                    {employee.department}
+                  </span>
+                </div>
+                <div className="truncate text-sm text-slate-500">{employee.jobTitle}</div>
+                <div>
+                  <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${statusClasses[employee.status] ?? "bg-slate-200 text-slate-700"}`}>
+                    {employee.status}
+                  </span>
+                </div>
+                <div className="truncate text-sm text-slate-500">{employee.employmentType}</div>
+                <div className="flex items-center justify-end text-sm text-slate-500">
+                  <MoreHorizontal size={16} />
+                </div>
+              </button>
+            ))}
+            {filteredEmployees.length === 0 && (
+              <div className="p-8 text-center text-sm text-slate-500">No employees found.</div>
+            )}
           </div>
         </div>
-        <div className="divide-y bg-slate-50">
-          {filteredEmployees.map((employee) => (
-            <button
-              key={employee.id}
-              type="button"
-              onClick={() => openEditEmployee(employee)}
-              className="grid min-w-full grid-cols-[0.5fr_1.4fr_1.4fr_1.2fr_1.1fr_0.9fr_0.9fr_0.5fr] gap-4 px-4 py-5 text-left transition hover:bg-slate-100"
-            >
-              <span className="flex h-5 w-5 items-center justify-center rounded-md border border-slate-300 bg-white text-sm text-slate-500"> </span>
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-2xl bg-violet-100 text-violet-700 grid place-items-center text-sm font-semibold">{employee.firstName[0]}{employee.lastName[0]}</div>
-                <div>
-                  <p className="font-semibold text-slate-950">{employee.fullName}</p>
-                  <p className="text-sm text-slate-500">{employee.employeeId}</p>
-                </div>
-              </div>
-              <div className="truncate text-sm text-slate-500">{employee.email}</div>
-              <div className="truncate text-sm text-slate-500">
-                <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${departmentClasses[employee.department] ?? "bg-slate-100 text-slate-700"}`}>
-                  {employee.department}
-                </span>
-              </div>
-              <div className="truncate text-sm text-slate-500">{employee.jobTitle}</div>
-              <div>
-                <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${statusClasses[employee.status] ?? "bg-slate-200 text-slate-700"}`}>
-                  {employee.status}
-                </span>
-              </div>
-              <div className="truncate text-sm text-slate-500">{employee.employmentType}</div>
-              <div className="flex items-center justify-end text-sm text-slate-500">
-                <MoreHorizontal size={16} />
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
+      )}
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200/80 bg-background p-4 shadow-sm">
-        <p className="text-sm text-muted-foreground">Showing 1 to {filteredEmployees.length} of 248 employees</p>
-        <div className="flex items-center gap-3">
-          <button className="rounded-full border border-input px-4 py-2 text-sm">Previous</button>
-          <button className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">Next</button>
+      {!loading && !error && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200/80 bg-background p-4 shadow-sm">
+          <p className="text-sm text-muted-foreground">Showing 1 to {filteredEmployees.length} of {filteredEmployees.length} employees</p>
+          <div className="flex items-center gap-3">
+            <button className="rounded-full border border-input px-4 py-2 text-sm">Previous</button>
+            <button className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">Next</button>
+          </div>
         </div>
-      </div>
+      )}
 
       <Modal
         open={modalOpen}
-        title={activeEmployee ? "Edit employee" : "New employee"}
-        description="Save employee profile details and contact information."
+        title={activeEmployee ? (isManagement ? "Edit employee" : "View / Edit profile") : "New employee"}
+        description={isManagement ? "Save employee profile details and contact information." : "Update your contact details."}
         onClose={() => setModalOpen(false)}
       >
         <EmployeeForm
+          isEmployee={!isManagement}
           defaultValues={
             activeEmployee
               ? {
@@ -322,7 +278,7 @@ export function EmployeesPage() {
               : undefined
           }
           onSubmit={handleSaveEmployee}
-          submitLabel={activeEmployee ? "Update employee" : "Create employee"}
+          submitLabel={activeEmployee ? (isManagement ? "Update employee" : "Update profile") : "Create employee"}
         />
       </Modal>
     </div>

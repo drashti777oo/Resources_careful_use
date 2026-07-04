@@ -22,12 +22,19 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['Admin', 'HR', 'Manager', 'Employee'],
-      default: 'Employee',
+      enum: ['SUPER_ADMIN', 'ADMIN', 'HR', 'MANAGER', 'EMPLOYEE'],
+      default: 'EMPLOYEE',
+      set: (val) => (val ? val.toUpperCase().trim() : val),
     },
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    verificationOtp: {
+      type: String,
+    },
+    otpExpiresAt: {
+      type: Date,
     },
     profilePicture: {
       type: String,

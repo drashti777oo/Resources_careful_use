@@ -1,6 +1,7 @@
 import Employee from '../models/Employee.js';
 import { createEmployeeSchema, updateEmployeeSchema } from '../validators/employeeValidator.js';
 import { successResponse, errorResponse } from '../utils/response.js';
+import { getEmployeeScopeFilter, canAccessEmployee } from '../utils/access.js';
 
 const buildQuery = (department, status) => {
   const query = {};
@@ -38,7 +39,8 @@ export const createEmployee = async (req, res) => {
 export const getEmployees = async (req, res) => {
   try {
     const { page = 1, limit = 20, search, department, status } = req.query;
-    const query = buildQuery(department, status);
+    const scopeFilter = getEmployeeScopeFilter(req.user);
+    const query = { ...buildQuery(department, status), ...scopeFilter };
 
     if (search) {
       query.$or = [
@@ -79,6 +81,10 @@ export const getEmployees = async (req, res) => {
 export const getEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
+    if (!await canAccessEmployee(req.user, id)) {
+      return errorResponse(res, 403, 'Access denied');
+    }
+
     const employee = await Employee.findById(id)
       .populate('user', 'email role')
       .populate('manager', 'email role');
@@ -95,12 +101,16 @@ export const getEmployeeById = async (req, res) => {
 
 export const updateEmployee = async (req, res) => {
   try {
+    const { id } = req.params;
+    if (!await canAccessEmployee(req.user, id)) {
+      return errorResponse(res, 403, 'Access denied');
+    }
+
     const parsed = updateEmployeeSchema.safeParse(req.body);
     if (!parsed.success) {
       return errorResponse(res, 400, 'Invalid employee data', parsed.error.issues);
     }
 
-    const { id } = req.params;
     const employee = await Employee.findByIdAndUpdate(id, parsed.data, {
       new: true,
       runValidators: true,
@@ -119,6 +129,10 @@ export const updateEmployee = async (req, res) => {
 export const deleteEmployee = async (req, res) => {
   try {
     const { id } = req.params;
+    if (!await canAccessEmployee(req.user, id)) {
+      return errorResponse(res, 403, 'Access denied');
+    }
+
     const employee = await Employee.findByIdAndDelete(id);
 
     if (!employee) {
