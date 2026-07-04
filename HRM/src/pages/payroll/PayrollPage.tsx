@@ -118,9 +118,9 @@ export function PayrollPage() {
         ))}
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1.4fr_0.9fr]">
+      <div className="grid gap-4 xl:grid-cols-[1.5fr_0.95fr]">
         <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-medium text-slate-500">Payroll period</p>
               <h2 className="mt-2 text-lg font-semibold text-slate-900">July 2026</h2>
@@ -138,7 +138,7 @@ export function PayrollPage() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 xl:grid-cols-[1.4fr_1fr]">
+          <div className="mt-6 grid gap-4 xl:grid-cols-[1.45fr_0.95fr]">
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
               <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
                 <div>
@@ -148,7 +148,7 @@ export function PayrollPage() {
                 <div className="rounded-2xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900">$20,030</div>
               </div>
 
-              <div className="mt-6 grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
+              <div className="mt-6 grid gap-4 xl:grid-cols-[1fr_0.85fr] items-start">
                 <div className="rounded-[2rem] bg-white p-6">
                   <div className="relative flex h-56 w-full items-center justify-center">
                     <svg viewBox="0 0 160 160" className="h-full w-full">
@@ -196,6 +196,7 @@ export function PayrollPage() {
                     </div>
                   </div>
                 </div>
+
                 <div className="rounded-3xl bg-white p-6 text-sm text-slate-700">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -218,33 +219,54 @@ export function PayrollPage() {
               </div>
             </div>
 
-            <div className="grid gap-4">
-              <div className="rounded-3xl border border-slate-200 bg-white p-6">
-                <div className="rounded-3xl bg-slate-50 p-5">
-                  <div className="flex items-start gap-4">
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-100 text-emerald-700">✓</div>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-900">Payroll run completed</p>
-                      <p className="mt-1 text-sm text-slate-500">July 2026 payroll has been processed successfully.</p>
-                      <p className="mt-3 text-xs text-slate-400">Completed on Jul 25, 2026 at 10:30 AM</p>
-                    </div>
-                  </div>
+            <div className="rounded-3xl border border-slate-200 bg-white p-6">
+              <p className="text-sm font-medium text-slate-500">Payroll summary</p>
+              <div className="mt-6 space-y-4 text-sm text-slate-700">
+                <div className="flex items-center justify-between">
+                  <span>Gross payroll</span>
+                  <span className="font-semibold text-slate-900">$22,000</span>
                 </div>
-                <div className="mt-6 grid gap-3">
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-center">
-                    <p className="text-sm text-slate-500">Employees</p>
-                    <p className="mt-2 text-2xl font-semibold text-slate-900">28</p>
-                  </div>
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-center">
-                    <p className="text-sm text-slate-500">Paid</p>
-                    <p className="mt-2 text-2xl font-semibold text-emerald-700">28</p>
-                  </div>
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-center">
-                    <p className="text-sm text-slate-500">Failed</p>
-                    <p className="mt-2 text-2xl font-semibold text-rose-700">0</p>
-                  </div>
+                <div className="flex items-center justify-between">
+                  <span>Total deductions</span>
+                  <span className="font-semibold text-slate-900">-$410</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Taxes</span>
+                  <span className="font-semibold text-slate-900">-$1,560</span>
+                </div>
+                <div className="flex items-center justify-between border-t border-slate-200 pt-4">
+                  <span className="font-semibold text-violet-700">Net payroll</span>
+                  <span className="text-sm font-semibold text-slate-900">$20,030</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <p className="text-sm font-medium text-slate-500">Payroll run status</p>
+          <div className="mt-6 rounded-3xl bg-slate-50 p-6">
+            <div className="flex items-center gap-4">
+              <div className="grid h-14 w-14 place-items-center rounded-full bg-emerald-100 text-emerald-700">✓</div>
+              <div>
+                <p className="text-sm font-semibold text-slate-900">Payroll run completed</p>
+                <p className="mt-1 text-sm text-slate-500">July 2026 payroll has been processed successfully.</p>
+                <p className="mt-3 text-xs text-slate-400">Completed on Jul 25, 2026 at 10:30 AM</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 grid gap-3">
+            <div className="rounded-3xl bg-slate-50 p-4 text-center">
+              <p className="text-sm text-slate-500">Employees</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-900">28</p>
+            </div>
+            <div className="rounded-3xl bg-slate-50 p-4 text-center">
+              <p className="text-sm text-slate-500">Paid</p>
+              <p className="mt-2 text-2xl font-semibold text-emerald-700">28</p>
+            </div>
+            <div className="rounded-3xl bg-slate-50 p-4 text-center">
+              <p className="text-sm text-slate-500">Failed</p>
+              <p className="mt-2 text-2xl font-semibold text-rose-700">0</p>
             </div>
           </div>
         </div>
