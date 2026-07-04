@@ -1,13 +1,11 @@
 import { useMemo, useState } from "react"
 import {
   ArrowUpRight,
-  Bell,
   Calendar,
   CalendarDays,
-  Check,
   ChevronDown,
+  Clock,
   Download,
-  TrendingUp,
   Users,
 } from "lucide-react"
 
@@ -145,14 +143,14 @@ export function AttendancePage() {
             <button
               type="button"
               onClick={handleCheckIn}
-              className="min-w-[140px] rounded-full border border-emerald-500 bg-emerald-50 px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
+              className="min-w-35 rounded-full border border-emerald-500 bg-emerald-50 px-5 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
             >
               Check In
             </button>
             <button
               type="button"
               onClick={handleCheckOut}
-              className="min-w-[140px] rounded-full border border-rose-400 bg-white px-5 py-3 text-sm font-semibold text-rose-600 transition hover:bg-slate-50"
+              className="min-w-35 rounded-full border border-rose-400 bg-white px-5 py-3 text-sm font-semibold text-rose-600 transition hover:bg-slate-50"
             >
               Check Out
             </button>
