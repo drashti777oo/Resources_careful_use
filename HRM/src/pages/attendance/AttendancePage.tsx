@@ -15,6 +15,7 @@ const attendanceRecords: AttendanceRecord[] = [
 export function AttendancePage() {
   const [checkedIn, setCheckedIn] = useState(false)
   const [checkInTime, setCheckInTime] = useState<string>("")
+  const [checkOutTime, setCheckOutTime] = useState<string>("")
   const [search, setSearch] = useState("")
 
   const filteredRecords = useMemo(
